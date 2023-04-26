@@ -4,6 +4,7 @@ public class LikeDirectors {
 
 	String directorid;
 	String id;
+	String posterUrl;
 	
 	public String getDirectorid() {
 		return directorid;
@@ -16,6 +17,12 @@ public class LikeDirectors {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public String getPosterUrl() {
+		return posterUrl;
+	}
+	public void setPosterUrl(String posterUrl) {
+		this.posterUrl = posterUrl;
 	}
 	
 }
