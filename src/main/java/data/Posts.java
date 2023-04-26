@@ -10,6 +10,9 @@ public class Posts {
 	String content;
 	Date dates;
 	int views;
+	String name;
+	
+	
 	
 	public String getPostId() {
 		return postId;
@@ -47,5 +50,14 @@ public class Posts {
 	public void setViews(int views) {
 		this.views = views;
 	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	
+	
 	
 }

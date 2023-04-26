@@ -3,7 +3,10 @@ package data;
 public class Comments {
 
 	String movieId;
-	String Id;
+	String id;
+	String comments;
+	String commentId;
+	
 	
 	public String getMovieId() {
 		return movieId;
@@ -12,11 +15,24 @@ public class Comments {
 		this.movieId = movieId;
 	}
 	public String getId() {
-		return Id;
+		return id;
 	}
 	public void setId(String id) {
-		Id = id;
+		this.id = id;
 	}
+	public String getComments() {
+		return comments;
+	}
+	public void setComments(String comments) {
+		this.comments = comments;
+	}
+	public String getCommentId() {
+		return commentId;
+	}
+	public void setCommentId(String commentId) {
+		this.commentId = commentId;
+	}
+	
 	
 	
 }
