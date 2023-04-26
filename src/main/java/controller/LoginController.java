@@ -8,16 +8,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 /*
- * 인덱스 화면으로 넘겨줄 컨트롤러
+ * 로그인 화면으로 넘겨줄 컨트롤러
  */
-@WebServlet("/index")
-public class IndexController extends HttpServlet {
+@WebServlet("/user/login")
+public class LoginController extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		req.getRequestDispatcher("/WEB-INF/views/Index.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/user/Login.jsp").forward(req, resp);
 	}
 }
