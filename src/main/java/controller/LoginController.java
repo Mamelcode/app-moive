@@ -12,9 +12,12 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/user/login")
 public class LoginController extends HttpServlet{
+
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		req.getRequestDispatcher("/WEB-INF/views/user/login.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/user/Login.jsp").forward(req, resp);
 	}
 }
