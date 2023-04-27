@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="post">
+
+	<!-- 게시글 등록 -->
+	<insert id="create" parameterType="hashmap">   
+		INSERT INTO POSTS(POST_ID, ID, TITLE, CONTENTS, NAME) 
+		VALUSE (#{postId}, #{id}, #{title}, #{content}, #{name})
+	</insert>
+
+	<!-- 게시글 보기 -->
+	<select id="postView">
+		SELECT POSTS.* FROM POSTS WHERE POST_ID=#{postId}
+	</select>
+	
+	<!-- 게시글 수정 -->
+	<update id="update" >
+		UPDATE POSTS SET TITLE = #{title}, CONTENTS = #{content} WHERE POST_ID = #{postId}
+	</update>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="delecte">
+		DELETE FROM POSTS WHERE POST_ID = #{postId}
+	</delete>
+	
+</mapper>
