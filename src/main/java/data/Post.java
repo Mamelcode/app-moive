@@ -2,7 +2,7 @@ package data;
 
 import java.sql.Date;
 
-public class Posts {
+public class Post {
 
 	String postId;
 	String id;

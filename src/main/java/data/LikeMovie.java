@@ -1,6 +1,6 @@
 package data;
 
-public class LikeMovies {
+public class LikeMovie {
 	
 	String movieId;
 	String id;

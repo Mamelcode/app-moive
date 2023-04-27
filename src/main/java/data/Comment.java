@@ -1,6 +1,6 @@
 package data;
 
-public class Comments {
+public class Comment {
 
 	String movieId;
 	String id;

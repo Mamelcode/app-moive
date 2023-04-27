@@ -1,6 +1,6 @@
 package data;
 
-public class Users {
+public class User {
 
 	String id;
 	String pass;

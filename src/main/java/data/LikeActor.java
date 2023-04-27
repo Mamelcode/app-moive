@@ -1,6 +1,6 @@
 package data;
 
-public class LikeActors {
+public class LikeActor {
 	
 	String actorId;
 	String id;
