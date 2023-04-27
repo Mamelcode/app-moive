@@ -7,15 +7,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-/*
- * 인덱스 화면으로 넘겨줄 컨트롤러
- */
-@WebServlet("/index")
-public class IndexController extends HttpServlet {
 
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+
+/*
+ * 영화 ID 를 이용해 영화 상세정보를 받아 상세보기페이지로 넘겨줄 컨트롤러
+ */
+@WebServlet("/detail")
+public class DetailController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		req.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(req, resp);
+		
 	}
 }
