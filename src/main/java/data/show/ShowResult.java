@@ -8,7 +8,7 @@ public class ShowResult {
 	String overview;  // 줄거리
 	String title;  // 제목
 	String posterPath;  // 포스터
-	
+	String voteAverage; // 평점
 	
 	public String getId() {
 		return id;
@@ -21,6 +21,9 @@ public class ShowResult {
 	}
 	public String getPosterPath() {
 		return posterPath;
+	}
+	public String getVoteAverage() {
+		return voteAverage;
 	}
 	
 
