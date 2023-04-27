@@ -13,9 +13,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/user/list")
 public class MovieListController extends HttpServlet {
-
-	private static final long serialVersionUID = 1L;
-
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		

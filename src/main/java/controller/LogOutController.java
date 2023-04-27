@@ -11,16 +11,11 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/logout")
 public class LogOutController extends HttpServlet{
-	
-	private static final long serialVersionUID = 1L;
-
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		session.removeAttribute("logonUser");
 		
 		resp.sendRedirect("/Index");
-		
-		
 	}	
 }

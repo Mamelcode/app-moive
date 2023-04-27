@@ -13,11 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/index")
 public class IndexController extends HttpServlet {
 
-	private static final long serialVersionUID = 1L;
-
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		req.getRequestDispatcher("/WEB-INF/views/Index.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(req, resp);
 	}
 }

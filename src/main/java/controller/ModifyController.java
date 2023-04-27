@@ -17,14 +17,6 @@ import org.apache.ibatis.session.SqlSessionFactory;
 @WebServlet("/modify")
 public class ModifyController extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//======================================================
-		SqlSessionFactory factory = (SqlSessionFactory)
-				req.getServletContext().getAttribute("sqlSessionFactory");
-		SqlSession sqlSession = factory.openSession();
-		//======================================================
-
-		sqlSession.close();
-
 
 
 		req.getRequestDispatcher("/WEB-INF/views/users/ModifyPost.jsp").forward(req, resp);

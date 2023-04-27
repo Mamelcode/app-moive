@@ -9,7 +9,4 @@ import javax.servlet.http.HttpServlet;
 @WebServlet("/modify-task")
 public class ModifyTaskController extends HttpServlet {
 
-
-	private static final long serialVersionUID = 1L;
-
 }

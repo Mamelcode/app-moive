@@ -13,35 +13,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/user/login-task")
 public class LoginTaskController extends HttpServlet{
-
-	private static final long serialVersionUID = 1L;
-
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setCharacterEncoding("utf-8");
-		String id = req.getParameter("id");
-		String pass = req.getParameter("pass");
 		
-		/*
-		//=========================================================
-		SqlSessionFactory factory = (SqlSessionFactory)
-				req.getServletContext().getAttribute("sqlSessionFactory");
-		SqlSession sqlSession = factory.openSession();
-		User one = sqlSession.selectOne("users.findById", id);
-		sqlSession.close();
-		//=========================================================
-	
-		
-		if(one.getPass().equals(pass)) {
-			HttpSession session = req.getSession();
-			session.setAttribute("logon", true);
-			session.setAttribute("logonUser", one);
-			resp.sendRedirect("/index");
-			return;
-		}else {
-			resp.sendRedirect("/user/Login.jsp?error=1");
-			return;
-		*/
 		
 	}
 }

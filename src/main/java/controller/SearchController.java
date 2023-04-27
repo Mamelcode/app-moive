@@ -14,9 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/user/search")
 public class SearchController extends HttpServlet {
-
-	private static final long serialVersionUID = 1L;
-
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		req.getRequestDispatcher("/WEB-INF/views/user/Search.jsp").forward(req, resp);

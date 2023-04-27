@@ -18,11 +18,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 public class DetailController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//======================================================
-		SqlSessionFactory factory = (SqlSessionFactory)
-				req.getServletContext().getAttribute("sqlSessionFactory");
-		SqlSession sqlSession = factory.openSession();
-		//======================================================
+		
 		
 	}
 }

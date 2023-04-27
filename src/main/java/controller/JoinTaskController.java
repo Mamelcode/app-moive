@@ -16,17 +16,8 @@ import org.apache.ibatis.session.SqlSessionFactory;
  */
 @WebServlet("/user/join-task")
 public class JoinTaskController extends HttpServlet {
-
-	private static final long serialVersionUID = 1L;
 		@Override
 		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-			//======================================================
-			SqlSessionFactory factory = (SqlSessionFactory)
-					req.getServletContext().getAttribute("sqlSessionFactory");
-			SqlSession sqlSession = factory.openSession();
-			//======================================================
-			
-			String id = req.getParameter("id"); // 회원가입 ID
 			
 		}
 }
