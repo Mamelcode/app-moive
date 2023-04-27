@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>FLIXFIX</title>
+<title>Insert title here</title>
 </head>
 <body>
-	<h2>인덱스 페이지입니다.</h2>
+
 </body>
 </html>
