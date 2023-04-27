@@ -165,7 +165,6 @@ public class MovieAPI {
 			System.out.println("movieDetail == > " + movieDetail.getPoster_path());
 			System.out.println("movieDetail == > " + movieDetail.getTagline());
 			System.out.println("movieDetail == > " + movieDetail.getTitle());
-			System.out.println("movieDetail == > " + movieDetail.getGenres());
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -212,6 +211,6 @@ public class MovieAPI {
 	}
 
 	public static void main(String[] args) {
-		getCreditList("238");
+		getMoiveDetail("594767");
 	}
 }

@@ -1,12 +1,2 @@
-<<<<<<< HEAD
-/controller/
 /data/
-/listener/
-/mybatis/
-/repository/
 /util/
-=======
-/util/
-/data/
-/mybatis/
->>>>>>> 236272e83933d7c732e67496844344cf93653240

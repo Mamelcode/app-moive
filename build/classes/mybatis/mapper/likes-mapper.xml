@@ -3,9 +3,6 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="like">
-<<<<<<< HEAD
-	
-=======
 	<!--영화 좋아요 생성 -->
 	<insert id="movieLikeCreate" parameterType="hashmap">
 		INSERT INTO LIKEMOVIES(movieId,id,posterUrl) 
@@ -47,5 +44,4 @@
 	<delete id="directorLikeDelete" parameterType="hashmap">
 		DELETE LIKEDIRECTORS WHERE id = #{id} AND directorId = #(directorId)
 	</delete>
->>>>>>> develop
 </mapper>

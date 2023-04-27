@@ -1,6 +1,5 @@
 package data.popular;
 
-
 // 인기순 영화리스트
 public class PoResults {
 
@@ -14,10 +13,5 @@ public class PoResults {
 		this.results = results;
 	}
 
-<<<<<<< HEAD
-	
-=======
-
->>>>>>> 236272e83933d7c732e67496844344cf93653240
 	
 }
