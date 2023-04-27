@@ -4,9 +4,9 @@ package data.credit;
 // 출연진(감독, 배우)
 public class Cast {
 
-	Cast[] cast;
+	Casts[] cast;
 
-	public Cast[] getCast() {
+	public Casts[] getCast() {
 		return cast;
 	}	 
 	

@@ -1,30 +1,52 @@
 package data.credit;
 
-
 //출연진 (감독, 배우)
 public class Casts {
 
-	String id; 					// 인물 id
-	String name;   			   	// 이름
-	String profilePath;   		 // 프로필 url 
-	String knownForDepartment;   // 직업
-	String order;				// 0부터~
-	
-	
+	String id; // 인물 id
+	String name; // 이름
+	String profile_path; // 프로필 url
+	String known_for_department; // 직업
+	int order; // 0부터~
+
 	public String getId() {
 		return id;
 	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public String getName() {
 		return name;
 	}
-	public String getProfilePath() {
-		return profilePath;
+
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getKnownForDepartment() {
-		return knownForDepartment;
+
+	public String getProfile_path() {
+		return profile_path;
 	}
-	public String getOrder() {
+
+	public void setProfile_path(String profile_path) {
+		this.profile_path = profile_path;
+	}
+
+	public String getKnown_for_department() {
+		return known_for_department;
+	}
+
+	public void setKnown_for_department(String known_for_department) {
+		this.known_for_department = known_for_department;
+	}
+
+	public int getOrder() {
 		return order;
 	}
-		
+
+	public void setOrder(int order) {
+		this.order = order;
+	}
+
 }
