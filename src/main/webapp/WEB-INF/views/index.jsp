@@ -7,6 +7,6 @@
 <title>FLIXFIX</title>
 </head>
 <body>
-	<h2>인덱스 페이지입니다.</h2>
+	<h2>인덱스 페이지입니다1.</h2>
 </body>
 </html>
