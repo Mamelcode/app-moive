@@ -1,6 +1,6 @@
 package data;
 
-public class LikeDirectors {
+public class LikeDirector {
 
 	String directorid;
 	String id;
