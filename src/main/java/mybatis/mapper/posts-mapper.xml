@@ -3,5 +3,15 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="post">
+
+	<insert id="create" parameterType="hashmap">
+		INSERT INTO POSTS VALUES(MESSAGES_SEQ.NEXTVAL, #{post_id}, #{body}, #{pass} )
+	</insert>
+	<select id="readByTarget" resultType="message">
+		SELECT * FROM POSTS WHERE TARGET=#{target}
+	</select>
+	<delete id="delecte">
+		DELETE FROM POSTS WHERE NO=#{no}
+	</delete>
 	
 </mapper>

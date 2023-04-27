@@ -4,11 +4,16 @@ package data.detail;
 // 영화 디테일 > 장르
 public class MovieGenres {
 
-	MovieGere[] movieger;
+	MovieGere[] moviegers;
 
-	public MovieGere[] getMovieger() {
-		return movieger;
+	public MovieGere[] getMoviegers() {
+		return moviegers;
 	}
+
+	public void setMoviegers(MovieGere[] moviegers) {
+		this.moviegers = moviegers;
+	}
+
 	
 	
 }
