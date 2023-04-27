@@ -4,10 +4,13 @@ package data.grade;
 //평점순영화 리스트
 public class Results {
 	
-	Result[] result;
+	Result[] results;
 
-	public Result[] getResult() {
-		return result;
+	public Result[] getResults() {
+		return results;
 	}
-	
+
+	public void setResults(Result[] results) {
+		this.results = results;
+	}
 }
