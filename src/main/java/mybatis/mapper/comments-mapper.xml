@@ -3,5 +3,23 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="comment">
+
+	<!-- 코멘트 등록 -->
+	<insert id="create" parameterType="hashmap">   
+		INSERT INTO COMMENTS(ID, CONTENTS, COMMENT_ID) 
+		VALUSE (#{id}, #{comments}, #{commentId})
+	</insert>
+
+	<!-- 코멘트 보기 -->
+	<select id="commentsView">
+		SELECT COMMENTS.* FROM COMMENTS WHERE MOVIE_ID=#{movieId}
+	</select>
+	
+	<!-- 코멘트 삭제 -->
+	<delete id="delecte">
+		DELETE FROM COMMENTS WHERE COMMENT_ID = #{commentId}
+	</delete>
+	
+
 	
 </mapper>
