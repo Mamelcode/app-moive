@@ -20,6 +20,4 @@
 		DELETE FROM COMMENTS WHERE COMMENT_ID = #{commentId}
 	</delete>
 	
-
-	
 </mapper>

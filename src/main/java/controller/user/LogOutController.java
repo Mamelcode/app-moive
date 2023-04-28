@@ -1,4 +1,4 @@
-package controller;
+package controller.user;
 
 import java.io.IOException;
 
@@ -7,17 +7,17 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-/*
- * 인덱스 화면으로 넘겨줄 컨트롤러
- */
+import javax.servlet.http.HttpSession;
 
-@WebServlet("/index")
-public class IndexController extends HttpServlet {
 
+// 로그아웃 처리할 컨트롤러
+@WebServlet("/logout")
+public class LogOutController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HttpSession session = req.getSession();
+		session.removeAttribute("logonUser");
 		
-		
-		req.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(req, resp);
-	}
+		resp.sendRedirect("/Index");
+	}	
 }
