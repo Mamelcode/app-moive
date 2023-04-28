@@ -7,7 +7,7 @@ public class Post {
 	String postId;
 	String id;
 	String title;
-	String content;
+	String contents;
 	Date dates;
 	int views;
 	String name;
@@ -32,11 +32,11 @@ public class Post {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public String getContent() {
-		return content;
+	public String getContents() {
+		return contents;
 	}
-	public void setContent(String content) {
-		this.content = content;
+	public void setContents(String contents) {
+		this.contents = contents;
 	}
 	public Date getDates() {
 		return dates;

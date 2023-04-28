@@ -8,7 +8,7 @@
 	<!-- 게시글 등록 -->
 	<insert id="create" parameterType="hashmap">   
 		INSERT INTO POSTS(POST_ID, ID, TITLE, CONTENTS, NAME) 
-		VALUSE (#{postId}, #{id}, #{title}, #{contents}, #{name})
+		VALUES (#{postId}, #{id}, #{title}, #{contents}, #{name})
 	</insert>
 	
 	<!-- 게시글 N개 보기 게시글 목록 + 페이징 처리 -->
@@ -26,7 +26,7 @@
 	
 	<!-- 게시글 수정 -->
 	<update id="postUpdate"  parameterType="hashmap">
-		UPDATE POSTS SET TITLE = #{title}, CONTENTS = #{content} WHERE POST_ID = #{postId}
+		UPDATE POSTS SET TITLE = #{title}, CONTENTS = #{contents} WHERE POST_ID = #{postId}
 	</update>
 	
 	<!-- 게시글 삭제 -->

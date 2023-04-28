@@ -6,8 +6,15 @@ public class Comment {
 	String id;
 	String comments;
 	String commentId;
+	String name;
 	
 	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public String getMovieId() {
 		return movieId;
 	}
