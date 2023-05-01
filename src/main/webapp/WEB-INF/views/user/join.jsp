@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,11 +35,24 @@
         <h2>회원가입</h2>
         <form class="login_form" action="/user/join-task" method="post">
           <p>닉네임</p>
-          <input type="text" name="name" placeholder="닉네임">
+          <input type="text" name="name" placeholder="닉네임(필수)">
           <p>아이디</p>
-          <input type="text" name="id" placeholder="아이디">
+          <input type="text" name="id" placeholder="아이디(필수)">
+          <c:if test="${param.error eq 3}">
+          	<p style="color: red; text-align: center;">아아디는 영어/숫자만 가능합니다.</p>
+          </c:if>
+          <c:if test="${param.error eq 4}">
+          	<p style="color: red; text-align: center;">이미 사용중인 아이디 입니다.</p>
+          </c:if>
           <p>비밀번호</p>
-          <input type="password" name="pass" placeholder="비밀번호">
+          <input type="password" name="pass" placeholder="비밀번호(필수)">
+          <c:if test="${param.error eq 1}">
+          	<p style="color: red; text-align: center;">정보를 빠짐없이 입력해주세요.</p>
+          </c:if>
+           <c:if test="${param.error eq 2}">
+          	<p style="color: red; text-align: center;">아이디/비밀번호는 4글자 이상<br>닉네임은 9글자 이하만 가능합니다.</p>
+          </c:if>
+          
           <button type="submit" name="button">회원가입</button>
         </form>
 

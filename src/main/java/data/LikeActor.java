@@ -4,8 +4,16 @@ public class LikeActor {
 	
 	String actorId;
 	String id;
-	String posterUrl;
+	String posterURL;
+	String actorName;
 	
+	
+	public String getActorName() {
+		return actorName;
+	}
+	public void setActorName(String actorName) {
+		this.actorName = actorName;
+	}
 	public String getActorId() {
 		return actorId;
 	}
@@ -18,13 +26,10 @@ public class LikeActor {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getPosterUrl() {
-		return posterUrl;
+	public String getPosterURL() {
+		return posterURL;
 	}
-	public void setPosterUrl(String posterUrl) {
-		this.posterUrl = posterUrl;
+	public void setPosterURL(String posterURL) {
+		this.posterURL = posterURL;
 	}
-	
-	
-
 }

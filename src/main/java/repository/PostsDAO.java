@@ -78,6 +78,25 @@ public class PostsDAO extends DAO {
 		}
 	}
 	
+	// DB에서 조회수를 증가시키는 메서드
+	public static int postViewUpdate(String postId) {
+		SqlSession session = factory.openSession(true);
+		try {
+			return session.update("post.updateViews", postId);
+		} finally {
+			session.close();
+		}
+	}
+	
+	// 게시글 전체 갯수 가져오는 메서드
+	public static int postCount() {
+		SqlSession session = factory.openSession(true);
+		try {
+			return session.selectOne("post.countPost");
+		} finally {
+			session.close();
+		}
+	}
 	
 	
 	public static void main(String[] args) {

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,53 +30,78 @@
 				<li><a href="/main/mylist">관심목록</a></li>
 			</ul>
 			<ul class="topsearch">
-				<li><span>000님</span><a href="">로그아웃</a></li>
+				<li><span>${logonUser.name}님</span><a href="/user/logout" style="color: #C0FFFF;">로그아웃</a></li>
 			</ul>
 		</div>
 	</nav>
 	<!-- 탑 메뉴  끝 -->
+
+	<!-- 영화 리스트 -->
+	<div class="list_wrap">
+		<div class="width">
+			<h2 class="title">관심영화</h2>
+			<div class="list_page">
+				<c:if test="${empty movieList}">
+					<span style="color: white; font-size: 24px;">좋아요 정보가 없습니다.</span>
+				</c:if>
+				<c:forEach items="${movieList}" var="list">
+					<div class="list_box">
+						<a href="/detail/unlike?movieId=${list.movieId}&position=mylist" class="detail_like"><i class="fa-solid fa-heart"></i></a>
+						<a href="/main/detail?movieId=${list.movieId}" class="list_img"><img src="https://image.tmdb.org/t/p/w300/${list.posterURL}"></a>
+					</div>
+				</c:forEach>
+			</div>
+		</div>
+	</div>
+	<!-- 영화 리스트 -->
 	
-	  <div class="list_wrap">
-    <div class="width">
-      <h2 class="title">관심영화</h2>
-
-      <div class="list_page">
-        <div class="list_box">
-          <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/oAt6OtpwYCdJI76AVtVKW1eorYx.jpg"></a>
-        </div>
-        <div class="list_box">
-          <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/oAt6OtpwYCdJI76AVtVKW1eorYx.jpg"></a>
-        </div>
-        <div class="list_box">
-          <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/oAt6OtpwYCdJI76AVtVKW1eorYx.jpg"></a>
-        </div>
-        <div class="list_box">
-          <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/oAt6OtpwYCdJI76AVtVKW1eorYx.jpg"></a>
-        </div>
-        <div class="list_box">
-          <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/oAt6OtpwYCdJI76AVtVKW1eorYx.jpg"></a>
-        </div>
-        <div class="list_box">
-          <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/oAt6OtpwYCdJI76AVtVKW1eorYx.jpg"></a>
-        </div>
-        <div class="list_box">
-          <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/oAt6OtpwYCdJI76AVtVKW1eorYx.jpg"></a>
-        </div>
-        <div class="list_box">
-          <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/oAt6OtpwYCdJI76AVtVKW1eorYx.jpg"></a>
-        </div>
-        <div class="list_box">
-          <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/oAt6OtpwYCdJI76AVtVKW1eorYx.jpg"></a>
-        </div>
-        <div class="list_box">
-          <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/oAt6OtpwYCdJI76AVtVKW1eorYx.jpg"></a>
-        </div>
-        <div class="list_box">
-          <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/oAt6OtpwYCdJI76AVtVKW1eorYx.jpg"></a>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  </body>
+	<!-- 배우 리스트 -->
+	<div class="list_wrap">
+		<div class="width">
+			<h2 class="title">관심배우</h2>
+			<div class="list_page">
+				<c:if test="${empty actorList}">
+					<span style="color: white; font-size: 24px;">좋아요 정보가 없습니다.</span>
+				</c:if>
+				<c:forEach items="${actorList}" var="list">
+					<div class="list_box">
+						<a href="/detail/actor-unlike?actorId=${list.actorId}&position=mylist" class="detail_like"><i class="fa-solid fa-heart"></i></a>
+						<img src="https://image.tmdb.org/t/p/w300/${list.posterURL}">
+					</div>
+				</c:forEach>
+			</div>
+		</div>
+	</div>
+	<!-- 배우 리스트 -->
+	
+	<!-- 감독 리스트 -->
+	<div class="list_wrap">
+		<div class="width">
+			<h2 class="title">관심감독</h2>
+			<div class="list_page">
+				<c:if test="${empty directorList}">
+					<span style="color: white; font-size: 24px;">좋아요 정보가 없습니다.</span>
+				</c:if>
+				<c:forEach items="${directorList}" var="list">
+					<div class="list_box">
+						<a href="/detail/director-unlike?directorId=${list.directorId}&position=mylist" class="detail_like"><i class="fa-solid fa-heart"></i></a>
+						<img src="https://image.tmdb.org/t/p/w300/${list.posterURL}">
+					</div>
+				</c:forEach>
+			</div>
+		</div>
+	</div>
+	<!-- 감독 리스트 -->
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</body>
 </html>

@@ -85,7 +85,7 @@ public class MovieAPI {
 	}
 
 	// 특정 영화의 크레딧을 가져오는 메서드
-	public static Cast getCreditList(String movieId) {
+	public static data.credit.Cast getCreditList(String movieId) {
 		try {
 			String target = "https://api.themoviedb.org/3/movie/" + movieId + "/credits";
 
@@ -110,6 +110,66 @@ public class MovieAPI {
 		} catch (Exception e) {
 			e.printStackTrace();
 			
+			return null;
+		}
+	}
+	
+	// 해당 인물의 출연작을 가져오는 메서드
+	public static data.person.Cast getRandomList(String id) {
+		try {
+			String target = "https://api.themoviedb.org/3/person/"+ id +"/movie_credits";
+			
+			Map<String, String> params = new LinkedHashMap<>();
+			params.put("api_key", "8069e75d4de0c85b5ade5fc677a893a5");
+			params.put("language", "ko-KR");
+			
+			String queryString = QueryStringBuilder.build(params);
+			
+			URI uri = new URI(target + "?" + queryString);
+			
+			HttpClient client = HttpClient.newHttpClient();
+			HttpRequest req = HttpRequest.newBuilder().uri(uri).GET().build();
+			HttpResponse<String> resp = client.send(req, BodyHandlers.ofString());
+			
+			Gson gson = new Gson();
+			
+			data.person.Cast result = gson.fromJson(resp.body(), data.person.Cast.class);
+			
+			return result;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+			return null;
+		}
+	}
+	
+	// 해당 영화와 비슷한 영화를 가져오는 메서드
+	public static Results getMovieSimilarList(String id) {
+		try {
+			String target = "https://api.themoviedb.org/3/movie/"+ id +"/similar";
+			
+			Map<String, String> params = new LinkedHashMap<>();
+			params.put("api_key", "8069e75d4de0c85b5ade5fc677a893a5");
+			params.put("language", "ko-KR");
+			params.put("page", "1");
+			
+			String queryString = QueryStringBuilder.build(params);
+			
+			URI uri = new URI(target + "?" + queryString);
+			
+			HttpClient client = HttpClient.newHttpClient();
+			HttpRequest req = HttpRequest.newBuilder().uri(uri).GET().build();
+			HttpResponse<String> resp = client.send(req, BodyHandlers.ofString());
+			
+			Gson gson = new Gson();
+			
+			Results result = gson.fromJson(resp.body(), Results.class);
+			
+			return result;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
 			return null;
 		}
 	}

@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +30,7 @@
 				<li><a href="/main/mylist">관심목록</a></li>
 			</ul>
 			<ul class="topsearch">
-				<li><span>000님</span><a href="">로그아웃</a></li>
+				<li><span>${logonUser.name}님</span><a href="/user/logout" style="color: #C0FFFF;">로그아웃</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -45,29 +48,61 @@
   					<th>조회</th>
           </tr>
 				</thead>
+				
 				<tbody>
+						<c:forEach items="${list}" var="post" varStatus="num" >
 						<tr>
-							<td>1</td>
-							<td><a href="">가나다라마바사</a></td>
-							<td>무쥐개</td>
-							<td>2023-04-26</td>
-							<td>10</td>
+							<td>${param.page eq 1 ? num.count : (idx - 10) + num.count}</td>
+							<td><a href="/post/detail?postId=${post.postId}">${post.title}</a></td>
+							<td>${post.name}</td>
+							<td>${post.dates}</td>
+							<td>${post.views}</td>
 						</tr>
+						</c:forEach>
 				</tbody>
+				
 			</table>
-      <div class="post_del">
-        <a href="/main/write"><i class="fa-solid fa-square-pen"></i> 글쓰기</a>
+      <div class="post_write">
+        <a href="/post/write"><i class="fa-solid fa-square-pen"></i> 글쓰기</a>
       </div>
 
+	<c:set var="currentPage" value="${empty param.page ? 1: param.page }"/>
       <div class="page_nav">
-        <a href="#" class="prev"><i class="fa-solid fa-angle-left"></i></a>
-        <a href="#" class="active">1</a>
-        <a href="#">2</a>
-        <a href="#">3</a>
-        <a href="#">4</a>
-        <a href="#">5</a>
-        <a href="#">6</a>
-        <a href="#" class="next"><i class="fa-solid fa-angle-right"></i></a>
+
+			<%-- prve 처리 --%>
+			<c:choose>
+				<c:when test="${existPrev }">
+					<a href="/main/postlist?page=${start - 1}" class="prev"><i class="fa-solid fa-angle-left"></i></a>
+				</c:when>
+				<c:otherwise>
+					<a class="prev"><i class="fa-solid fa-angle-left"></i></a>
+				</c:otherwise>
+			</c:choose>
+			<%-- prve 처리 --%>
+
+			<%-- 페이지 넘버 처리 --%>
+			<c:forEach begin="${start}" end="${last}" var="idx">
+				<c:choose>
+					<c:when test="${idx eq currentPage}">
+						<a class="active">${idx}</a>
+					</c:when>
+					<c:otherwise>
+						<a href="/main/postlist?page=${idx}">${idx}</a>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			<%-- 페이지 넘버 처리 --%>
+			
+			<%-- next 처리 --%>
+			<c:choose>
+				<c:when test="${existNext }">
+					<a href="/main/postlist?page=${last + 1}" class="next"><i class="fa-solid fa-angle-right"></i></a>
+				</c:when>
+				<c:otherwise>
+					<a class="next"><i class="fa-solid fa-angle-right"></i></a>
+				</c:otherwise>
+			</c:choose>
+			<%-- next 처리 --%> 
       </div>
   </div>
 

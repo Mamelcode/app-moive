@@ -11,13 +11,14 @@ import javax.servlet.http.HttpSession;
 
 
 // 로그아웃 처리할 컨트롤러
-@WebServlet("/logout")
+@WebServlet("/user/logout")
 public class LogOutController extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		HttpSession session = req.getSession();
 		session.removeAttribute("logonUser");
 		
-		resp.sendRedirect("/Index");
+		resp.sendRedirect("/index");
+		return;
 	}	
 }

@@ -34,4 +34,14 @@
 		DELETE FROM POSTS WHERE POST_ID = #{postId}
 	</delete>
 	
+	<!-- 게시글 전체 갯수 가져오기 -->
+	<select id="countPost" resultType="int">
+		SELECT COUNT(*) FROM POSTS
+	</select>
+	
+	<!-- 조회수 올리기 -->
+	<update id="updateViews" parameterType="String">
+		UPDATE POSTS SET VIEWS = VIEWS + 1 WHERE POST_ID = #{postId}
+	</update>
+	
 </mapper>

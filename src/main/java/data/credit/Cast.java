@@ -5,6 +5,15 @@ package data.credit;
 public class Cast {
 
 	Casts[] cast;		// 캐스팅 객체들을 담는 배열
+	Casts[] crew;
+	
+	public Casts[] getCrew() {
+		return crew;
+	}
+
+	public void setCrew(Casts[] crew) {
+		this.crew = crew;
+	}
 
 	public Casts[] getCast() {
 		return cast;

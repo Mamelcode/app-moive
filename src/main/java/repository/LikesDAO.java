@@ -16,12 +16,13 @@ public class LikesDAO extends DAO {
 	
 	// =================영화 좋아요 부분 시작
 	// DB에 영화 좋아요 등록 하는 메서드
-	public static int createLikeMoive(String movieId, String id, String posterURL) {
+	public static int createLikeMoive(String movieId, String id, String posterURL, String movieName) {
 		SqlSession session = factory.openSession(true);
 		Map<String, Object> map = new HashMap<>();
 		map.put("movieId", movieId);
 		map.put("id", id);
 		map.put("posterURL", posterURL);
+		map.put("movieName", movieName);
 		try {
 			return session.insert("like.movieLikeCreate", map);
 		} finally {
@@ -53,16 +54,27 @@ public class LikesDAO extends DAO {
 			session.close();
 		}
 	}
+	
+	// DB에서 사용자의 영화 좋아요 목록중 하나를 랜덤 추출하는 메서드
+	public static LikeMovie movieFindRandom(String id) {
+		SqlSession session = factory.openSession(true);
+		try {
+			return session.selectOne("like.movieFindRandom", id);
+		} finally {
+			session.close();
+		}
+	}
 	// =================영화 좋아요 부분 끝
 	
 	// =================배우 좋아요 부분 시작
 	// DB에 배우 좋아요 등록 하는 메서드
-	public static int createLikeActor(String actorId, String id, String posterURL) {
+	public static int createLikeActor(String actorId, String id, String posterURL, String actorName) {
 		SqlSession session = factory.openSession(true);
 		Map<String, Object> map = new HashMap<>();
 		map.put("actorId", actorId);
 		map.put("id", id);
 		map.put("posterURL", posterURL);
+		map.put("actorName", actorName);
 		try {
 			return session.insert("like.actorLikeCreate", map);
 		} finally {
@@ -94,16 +106,27 @@ public class LikesDAO extends DAO {
 			session.close();
 		}
 	}
+	
+	// DB에서 사용자의 배우 좋아요 목록중 하나를 랜덤 추출하는 메서드
+		public static LikeActor actorFindRandom(String id) {
+			SqlSession session = factory.openSession(true);
+			try {
+				return session.selectOne("like.actorFindRandom", id);
+			} finally {
+				session.close();
+			}
+		}
 	// =================배우 좋아요 부분 끝
 		
 	// =================감독 좋아요 부분 시작
 	// DB에 감독 좋아요 등록 하는 메서드
-	public static int createLikeDirector(String directorId, String id, String posterURL) {
+	public static int createLikeDirector(String directorId, String id, String posterURL, String directorName) {
 		SqlSession session = factory.openSession(true);
 		Map<String, Object> map = new HashMap<>();
 		map.put("directorId", directorId);
 		map.put("id", id);
 		map.put("posterURL", posterURL);
+		map.put("directorName", directorName);
 		try {
 			return session.insert("like.directorLikeCreate", map);
 		} finally {
@@ -131,6 +154,16 @@ public class LikesDAO extends DAO {
 		map.put("id", id);
 		try {
 			return session.delete("like.directorLikeDelete", map);
+		} finally {
+			session.close();
+		}
+	}
+	
+	// DB에서 사용자의 감독 좋아요 목록중 하나를 랜덤 추출하는 메서드
+	public static LikeDirector directorFindRandom(String id) {
+		SqlSession session = factory.openSession(true);
+		try {
+			return session.selectOne("like.directorFindRandom", id);
 		} finally {
 			session.close();
 		}
