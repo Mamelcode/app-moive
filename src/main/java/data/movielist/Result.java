@@ -9,7 +9,15 @@ public class Result {
 	String overview;  // 줄거리
 	String title; // 제목
 	String vote_average; // 평점
+	String release_date;
 	
+	
+	public String getRelease_date() {
+		return release_date;
+	}
+	public void setRelease_date(String release_date) {
+		this.release_date = release_date;
+	}
 	public String getVote_average() {
 		return vote_average;
 	}

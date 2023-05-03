@@ -66,7 +66,14 @@
 				<c:forEach items="${actorList}" var="list">
 					<div class="list_box">
 						<a href="/detail/actor-unlike?actorId=${list.actorId}&position=mylist" class="detail_like"><i class="fa-solid fa-heart"></i></a>
-						<img src="https://image.tmdb.org/t/p/w300/${list.posterURL}">
+						<c:choose>
+							<c:when test="${list.posterURL eq null}">
+								<p class="no_img">이미지 정보가 없습니다.</p>
+							</c:when>
+							<c:otherwise>
+								<img src="https://image.tmdb.org/t/p/w300/${list.posterURL}">
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</c:forEach>
 			</div>
@@ -85,7 +92,14 @@
 				<c:forEach items="${directorList}" var="list">
 					<div class="list_box">
 						<a href="/detail/director-unlike?directorId=${list.directorId}&position=mylist" class="detail_like"><i class="fa-solid fa-heart"></i></a>
-						<img src="https://image.tmdb.org/t/p/w300/${list.posterURL}">
+						<c:choose>
+							<c:when test="${list.posterURL eq null}">
+								<p class="no_img">이미지 정보가 없습니다.</p>
+							</c:when>
+							<c:otherwise>
+								<img src="https://image.tmdb.org/t/p/w300/${list.posterURL}">
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</c:forEach>
 			</div>

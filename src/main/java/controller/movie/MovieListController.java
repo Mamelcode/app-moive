@@ -45,6 +45,7 @@ public class MovieListController extends HttpServlet {
 			LikeMovie movie = LikesDAO.movieFindRandom(user.getId());
 			
 				// DB 좋아요 랜덤추출 데이터를 바탕으로 API 정보를 가져온다.(null이 아닐경우에)
+				// 비슷한 영화 추천
 				if(movie != null) {
 					List<Result> similarList = new ArrayList<>();
 					Results similarList1 = MovieAPI.getMovieSimilarList(movie.getMovieId());
@@ -57,6 +58,8 @@ public class MovieListController extends HttpServlet {
 					req.setAttribute("similarList", similarList);
 					req.setAttribute("movieName", movie.getMovieName());
 				}
+				
+				// 감독의 연출작 추천
 				if(director != null) {
 					data.person.Cast directorfeat1 = MovieAPI.getRandomList(director.getDirectorId());
 					List<Casts> directorfeat = new ArrayList<>();
@@ -81,7 +84,11 @@ public class MovieListController extends HttpServlet {
 										
 					req.setAttribute("directorfeat", directorfeat);
 					req.setAttribute("directorName", director.getDirectorName());
+					req.setAttribute("directorfeatSize", directorfeat.size());
+					System.out.println(directorfeat.size());
 				}
+				
+				// 배우의 출연작 추천
 				if(actor != null) {
 					List<Casts> actorfeat = new ArrayList<>();
 					data.person.Cast actorfeat1 = MovieAPI.getRandomList(actor.getActorId());

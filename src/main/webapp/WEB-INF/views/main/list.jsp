@@ -8,13 +8,14 @@
 <head>
 <meta charset="UTF-8">
 <title>FLIXFIX</title>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.js"></script>
 	<link href="https://cdn.jsdelivr.net/gh/hung1001/font-awesome-pro-v6@44659d9/css/all.min.css" rel="stylesheet" type="text/css" />
 	<link rel="stylesheet" href="/resource/css/initial.css" />
 	<link href="https://webfontworld.github.io/SCoreDream/SCoreDream.css" rel="stylesheet" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
 	<link rel="stylesheet" href="/resource/css/style.css" >
 </head>
-<body>
+<body class="all_wrap">
 
 	<!-- 탑 메뉴 -->
 	<nav class="header">
@@ -29,14 +30,28 @@
 				<li><a href="/main/postlist">커뮤니티</a></li>
 				<li><a href="/main/mylist">관심목록</a></li>
 				<li>
-					<div class="box">
-						<div class="container-2">
+					<div class="search_box">
 							<form action="/main/search">
+								<input type="text" name="search" id="search" placeholder="Search..." list="slist">
 								<span class="icon"><i class="fa fa-search"></i></span> 
-								<input type="search" name="search" id="search" placeholder="Search...">
+								<ul class="search_list">
+									<li id="ajax_list">
+									 	<ul class="search_result">
+									 		<li class="result_img"><img src="https://image.tmdb.org/t/p/w300/kmP6viwzcEkZeoi1LaVcQemcvZh.jpg"></li>
+									 		<li><a href="" class="search_tit">어벤져스 인피니티 워(2018)</a><a href="" class="search_stit">어벤져스팀과 타노스팀의 격돌!</a></li>
+									 	</ul>
+									 	<ul class="search_result">
+									 		<li class="result_img"><img src="https://image.tmdb.org/t/p/w300/kmP6viwzcEkZeoi1LaVcQemcvZh.jpg"></li>
+									 		<li><a href="" class="search_tit">어벤져스 인피니티 워(2018)</a><a href="" class="search_stit">어벤져스팀과 타노스팀의 격돌!</a></li>
+									 	</ul>
+									 	<ul class="search_result">
+									 		<li class="result_img"><img src="https://image.tmdb.org/t/p/w300/kmP6viwzcEkZeoi1LaVcQemcvZh.jpg"></li>
+									 		<li><a href="" class="search_tit">어벤져스 인피니티 워(2018)</a><a href="" class="search_stit">어벤져스팀과 타노스팀의 격돌!</a></li>
+									 	</ul>
+									</li>
+								</ul>
 							</form>
-						</div>
-					</div>
+						</div> 
 				</li>
 			</ul>
 			<ul class="topsearch">
@@ -45,6 +60,57 @@
 		</div>
 	</nav>
 	<!-- 탑 메뉴  끝 -->
+	<script type="text/javascript">
+		const input = document.getElementById("search");
+	
+		$('#search').keyup(function() {
+			$('.search_list').addClass('active')
+		});
+		
+		$('#search').keyup(function() {
+			if(input.value.length == 0){
+				$('.search_list').removeClass('active')
+			}
+		});
+		
+		$('.all_wrap').click(function() {
+			$('.search_list').removeClass('active')
+		});
+	</script>
+	
+	<script type="text/javascript">
+		const getValue = document.getElementById("search").onkeyup = function(evt) {
+			let target = evt.target.value;
+			
+			const xhr = new XMLHttpRequest();
+			xhr.open("get", "/main/search?search="+target, true);
+			xhr.send();
+			
+			xhr.onreadystatechange = function() {
+				if(xhr.readyState === 4) {
+					const json = JSON.parse(xhr.responseText);
+					const list = document.getElementById("ajax_list");
+					list.innerHTML = "";
+					let cnt = 0;
+					for(let o of json) {
+						list.innerHTML += "<ul class=\"search_result\">"+
+						"<li class=\"result_img\">"+
+						"<img src=\"https://image.tmdb.org/t/p/w300/"+ o.poster_path +"\">"+
+						"</li>"+
+						"<li><a href=\"/main/detail?movieId="+ o.id +" \" class=\"search_tit\">"+ o.title +"("+ o.release_date.substr(0, 4) +")</a>"+
+						"<a class=\"search_stit\">"+ o.overview.substr(0, 30) +"...</a>"+
+						"</li>"
+						"</ul>";
+						
+						cnt++;
+						if(cnt == 10) {
+							break;
+						}
+					}
+				}
+			}
+		};
+	</script>
 
 	<!-- 첫번째 슬라이드 시작 -->
 	<div class="list_wrap">
@@ -236,15 +302,57 @@
 		});
 	</script>
 	<script>
-		var swiper = new Swiper(".fifthSwiper", {
-			slidesPerView : 7,
-			spaceBetween : 20,
-			loop : true,
-			navigation : {
-				nextEl : ".swiper-next5",
-				prevEl : ".swiper-prev5",
-			},
-		});
+		$(window).on('load', function() {
+			slider();
+		})
+
+		function slider() {
+			let swiper = undefined;
+			let slideNum = $('.slider .swiper-slide').length //슬라이드 총 개수
+			let slideInx = 0; //현재 슬라이드 index
+
+			//디바이스 체크
+			let oldWChk = window.innerWidth > 1180 ? 'pc' : 'mo';
+			sliderAct();
+			$(window).on('resize', function() {
+				let newWChk = window.innerWidth > 1180 ? 'pc' : 'mo';
+				if (newWChk != oldWChk) {
+					oldWChk = newWChk;
+					sliderAct();
+				}
+			})
+
+			//슬라이드 실행
+			function sliderAct() {
+				//슬라이드 초기화 
+				if (swiper != undefined) {
+					swiper.destroy();
+					swiper = undefined;
+				}
+
+				//slidesPerView 옵션 설정
+				let viewNum = oldWChk == 'pc' ? 7 : 2.3;
+				//loop 옵션 체크
+				let loopChk = slideNum > viewNum;
+
+				swiper = new Swiper(".fifthSwiper", {
+					slidesPerView : viewNum,
+					initialSlide : slideInx,
+					spaceBetween : 10,
+					loop : loopChk,
+					navigation : {
+						nextEl : ".swiper-next5",
+						prevEl : ".swiper-prev5",
+					},
+
+					on : {
+						activeIndexChange : function() {
+							slideInx = this.realIndex; //현재 슬라이드 index 갱신
+						}
+					},
+				});
+			}
+		}
 	</script>
 	<script>
 		var swiper = new Swiper(".sixthSwiper", {
