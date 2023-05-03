@@ -12,10 +12,11 @@ import javax.servlet.http.HttpServletResponse;
  * 서치 정보를 넘겨줄 컨트롤러
  */
 
-@WebServlet("/user/search")
+@WebServlet("/search")
 public class SearchController extends HttpServlet {
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		
+		
 		req.getRequestDispatcher("/WEB-INF/views/user/Search.jsp").forward(req, resp);
 	}
 }

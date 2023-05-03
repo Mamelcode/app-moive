@@ -173,8 +173,49 @@ public class MovieAPI {
 			return null;
 		}
 	}
+	
+	public static Results getMovieSearchList(String query) {
+		try {
+			String target = "https://api.themoviedb.org/3/search/movie";
+			
+			Map<String, String> params = new LinkedHashMap<>();
+			params.put("api_key", "8069e75d4de0c85b5ade5fc677a893a5");
+			params.put("language", "ko-KR");
+			params.put("page", "1");
+			params.put("query", query);
+			
+			String queryString = QueryStringBuilder.build(params);
+			
+			URI uri = new URI(target + "?" + queryString);
+			
+			HttpClient client = HttpClient.newHttpClient();
+			HttpRequest req = HttpRequest.newBuilder().uri(uri).GET().build();
+			HttpResponse<String> resp = client.send(req, BodyHandlers.ofString());
+			
+			Gson gson = new Gson();
+			
+			Results result = gson.fromJson(resp.body(), Results.class);
+			
+			return result;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 
 	public static void main(String[] args) {
+		
+		/* 무비 서치 테스트
+		Results result = getMovieSearchList("어벤져스");
+		
+		System.out.println(result.getResults()[0].getId());
+		System.out.println(result.getResults()[0].getTitle());
+		System.out.println(result.getResults()[0].getOverview());
+		System.out.println(result.getResults()[0].getPoster_path());
+		System.out.println(result.getResults()[0].getVote_average());
+		*/
+		
 		
 		/* 무비크레딧 테스트
 		Cast re = getCreditList("594767");
