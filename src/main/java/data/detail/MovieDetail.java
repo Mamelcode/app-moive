@@ -10,7 +10,15 @@ public class MovieDetail {
 	String tagline; // 문구 (슬로건)
 	String title; // 제목
 	MovieGenre[] genres; // 영화 장르
+	String key;
 	
+	
+	public String getKey() {
+		return key;
+	}
+	public void setKey(String key) {
+		this.key = key;
+	}
 	public String getId() {
 		return id;
 	}

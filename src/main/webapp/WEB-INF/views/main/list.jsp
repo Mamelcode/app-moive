@@ -31,8 +31,10 @@
 				<li>
 					<div class="box">
 						<div class="container-2">
-							<span class="icon"><i class="fa fa-search"></i></span> <input
-								type="search" id="search" placeholder="Search...">
+							<form action="/main/search">
+								<span class="icon"><i class="fa fa-search"></i></span> 
+								<input type="search" name="search" id="search" placeholder="Search...">
+							</form>
 						</div>
 					</div>
 				</li>

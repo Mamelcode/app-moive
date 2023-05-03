@@ -1,6 +1,3 @@
 /controller/
-/data/
 /util/
-/mybatis/
-/repository/
-/filter/
+/data/

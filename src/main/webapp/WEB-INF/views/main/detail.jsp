@@ -160,11 +160,16 @@
 				
 				<!-- 유튜브 정보 -->
 				<div class="de_youtube">
+					<c:if test="${detail.key != null}">
 					<iframe width="980" height="550"
-						src="https://www.youtube.com/embed/ty1XzpkAAQA"
+						src="https://www.youtube.com/embed/${detail.key}"
 						title="YouTube video player" frameborder="0"
 						allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
 						allowfullscreen></iframe>
+					</c:if>
+					<c:if test="${detail.key eq null}">
+						<p>예고편 정보가 없습니다!</p>
+					</c:if>
 				</div>
 				<!-- 유튜브 정보 -->
 			</div>

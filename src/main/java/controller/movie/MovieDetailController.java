@@ -52,6 +52,17 @@ public class MovieDetailController extends HttpServlet{
 		
 		// 해당 영화 디테일 받아오기
 		MovieDetail detail = MovieAPI.getMoiveDetail(movieId);
+		
+		// 예고편 받아오기
+		data.youtube.Results youtube = MovieAPI.getTrailer(movieId);
+		
+		// 메인 예고편 하나만 디테일 객체에 세팅해주기
+		for(data.youtube.Result r : youtube.getResults()) {
+			if(r.getType().equals("Trailer")) {
+				detail.setKey(r.getKey());
+			}
+		}
+		
 		// 해당 영화 크레딧 받아오기
 		Cast cast = MovieAPI.getCreditList(movieId);
 		
@@ -69,7 +80,6 @@ public class MovieDetailController extends HttpServlet{
 				}
 			}
 		}
-		
 		
 		// 크레딧 감독 1명 배우 5명 만 빼기
 		int cnt = 0;

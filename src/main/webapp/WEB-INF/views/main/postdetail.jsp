@@ -64,6 +64,7 @@
 				<a href="#delete" rel="modal:open"><i class="fa-solid fa-square-xmark"></i> 삭제</a>
 				<!-- 팝업창 관련 -->
 			</div>
+			
 			<!-- 팝업창 관련 -->
 			<div id="modify" class="modal modalbox">
 				<p>해당 글을 <b>수정</b> 하시겠습니까?</p>

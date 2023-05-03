@@ -60,7 +60,7 @@ public class MovieListController extends HttpServlet {
 				if(director != null) {
 					data.person.Cast directorfeat1 = MovieAPI.getRandomList(director.getDirectorId());
 					List<Casts> directorfeat = new ArrayList<>();
-					Set<String > list = new HashSet<>();					
+					Set<String> list = new HashSet<>();					
 					// 포스터 값이 null 이 아닌 영화만 담는다.
 					for(data.person.Casts c : directorfeat1.getCrew()) {
 						if(c.getPoster_path() != null) {

@@ -174,6 +174,7 @@ public class MovieAPI {
 		}
 	}
 	
+	// 영화 검색에 사용하는 메서드
 	public static Results getMovieSearchList(String query) {
 		try {
 			String target = "https://api.themoviedb.org/3/search/movie";
@@ -203,12 +204,47 @@ public class MovieAPI {
 			return null;
 		}
 	}
+	
+	// 유튜브 예고편을 가져오는 메서드
+	public static data.youtube.Results getTrailer(String movieId) {
+		try {
+			String target = "https://api.themoviedb.org/3/movie/"+ movieId +"/videos";
+			
+			Map<String, String> params = new LinkedHashMap<>();
+			params.put("api_key", "8069e75d4de0c85b5ade5fc677a893a5");
+			params.put("language", "ko-KR");
+			
+			String queryString = QueryStringBuilder.build(params);
+			
+			URI uri = new URI(target + "?" + queryString);
+			
+			HttpClient client = HttpClient.newHttpClient();
+			HttpRequest req = HttpRequest.newBuilder().uri(uri).GET().build();
+			HttpResponse<String> resp = client.send(req, BodyHandlers.ofString());
+			
+			Gson gson = new Gson();
+			
+			data.youtube.Results result = gson.fromJson(resp.body(), data.youtube.Results.class);
+			
+			return result;
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+			return null;
+		}
+	}
 
 	public static void main(String[] args) {
 		
+		/* 동영상 키값 테스트
+		data.youtube.Results result = getTrailer("76600");
+		System.out.println(result.getResults()[0].getName());
+		System.out.println(result.getResults()[0].getType());
+		System.out.println(result.getResults()[0].getKey());
+		*/
+		
 		/* 무비 서치 테스트
 		Results result = getMovieSearchList("어벤져스");
-		
 		System.out.println(result.getResults()[0].getId());
 		System.out.println(result.getResults()[0].getTitle());
 		System.out.println(result.getResults()[0].getOverview());
