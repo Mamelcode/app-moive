@@ -2,27 +2,50 @@ package data;
 
 public class LikeDirector {
 
-	String directorid;
+	String directorId;
 	String id;
-	String posterUrl;
-	
-	public String getDirectorid() {
-		return directorid;
+	String posterURL;
+	String directorName;
+	boolean like;
+
+	public String getDirectorId() {
+		return directorId;
 	}
-	public void setDirectorid(String directorid) {
-		this.directorid = directorid;
+
+	public void setDirectorId(String directorId) {
+		this.directorId = directorId;
 	}
+
 	public String getId() {
 		return id;
 	}
+
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getPosterUrl() {
-		return posterUrl;
+
+	public String getPosterURL() {
+		return posterURL;
 	}
-	public void setPosterUrl(String posterUrl) {
-		this.posterUrl = posterUrl;
+
+	public void setPosterURL(String posterURL) {
+		this.posterURL = posterURL;
 	}
-	
+
+	public String getDirectorName() {
+		return directorName;
+	}
+
+	public void setDirectorName(String directorName) {
+		this.directorName = directorName;
+	}
+
+	public boolean isLike() {
+		return like;
+	}
+
+	public void setLike(boolean like) {
+		this.like = like;
+	}
+
 }

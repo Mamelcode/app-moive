@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>        
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,52 +30,71 @@
 				<li><a href="/main/mylist">관심목록</a></li>
 			</ul>
 			<ul class="topsearch">
-				<li><span>000님</span><a href="">로그아웃</a></li>
+				<li><span>${logonUser.name} 님</span><a href="/logout">로그아웃</a></li>
 			</ul>
 		</div>
 	</nav>
 	<!-- 탑 메뉴  끝 -->
 	
 	  <div class="list_wrap">
+	  
+	  
+	  
     <div class="width">
       <h2 class="title">관심영화</h2>
-
       <div class="list_page">
-        <div class="list_box">
-          <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/oAt6OtpwYCdJI76AVtVKW1eorYx.jpg"></a>
-        </div>
-        <div class="list_box">
-          <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/oAt6OtpwYCdJI76AVtVKW1eorYx.jpg"></a>
-        </div>
-        <div class="list_box">
-          <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/oAt6OtpwYCdJI76AVtVKW1eorYx.jpg"></a>
-        </div>
-        <div class="list_box">
-          <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/oAt6OtpwYCdJI76AVtVKW1eorYx.jpg"></a>
-        </div>
-        <div class="list_box">
-          <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/oAt6OtpwYCdJI76AVtVKW1eorYx.jpg"></a>
-        </div>
-        <div class="list_box">
-          <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/oAt6OtpwYCdJI76AVtVKW1eorYx.jpg"></a>
-        </div>
-        <div class="list_box">
-          <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/oAt6OtpwYCdJI76AVtVKW1eorYx.jpg"></a>
-        </div>
-        <div class="list_box">
-          <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/oAt6OtpwYCdJI76AVtVKW1eorYx.jpg"></a>
-        </div>
-        <div class="list_box">
-          <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/oAt6OtpwYCdJI76AVtVKW1eorYx.jpg"></a>
-        </div>
-        <div class="list_box">
-          <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/oAt6OtpwYCdJI76AVtVKW1eorYx.jpg"></a>
-        </div>
-        <div class="list_box">
-          <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/oAt6OtpwYCdJI76AVtVKW1eorYx.jpg"></a>
-        </div>
+      <!-- 영화 찜목록 -->
+      	<c:forEach items="${iikeMovie }" var="m">
+        	<div class="list_box">
+          		<a href="/main/detail?movieId=${m.movieId}"><img src="https://image.tmdb.org/t/p/w300/${m.posterURL }"></a>
+        	</div>
+        	<a href="/detail/movie-unlike?movieId=${m.movieId }&position=mylist"style="color: green;"> ✔</a>
+        </c:forEach>
+	   </div>
+    </div>
+	
+	<div class="width">
+      <h2 class="title">관심배우</h2>
+      <div class="list_page">
+        <!-- 배우 찜목록 -->
+      	 <c:forEach items="${likeActor }" var="a">
+        	<div class="list_box">
+          		<img src="https://image.tmdb.org/t/p/w300/${a.posterURL }">
+        	</div>
+        	<a href="/detail/actor-unlike?actorId=${a.actorId }&position=mylist"style="color: green;"> ✔</a>
+        </c:forEach>
+        
+
       </div>
     </div>
+	
+	
+	 <div class="width">
+      <h2 class="title">관심감독</h2>
+      <div class="list_page">
+
+        <!-- 감독 찜목록 -->
+      	 <c:forEach items="${likeDirector }" var="d">
+      	 	<c:choose>
+      	 		<c:when test="${d.posterURL eq null}">
+      	 			<div class="list_box">
+      	 				<img src="/resource/img/noimg.gif">
+      	 			</div>
+        		</c:when>
+        		<c:otherwise>
+        			<div class="list_box">
+          				<img src="https://image.tmdb.org/t/p/w300/${d.posterURL }">
+        			</div>
+        		</c:otherwise>
+        	</c:choose>
+        	<a href="/detail/director-unlike?directorId=${d.directorId }&position=mylist"style="color: green;"> ✔</a>
+        </c:forEach>
+        
+
+      </div>
+    </div>
+	
+    
   </div>
 
   </body>

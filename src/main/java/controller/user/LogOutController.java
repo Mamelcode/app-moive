@@ -18,6 +18,6 @@ public class LogOutController extends HttpServlet{
 		HttpSession session = req.getSession();
 		session.removeAttribute("logonUser");
 		
-		resp.sendRedirect("/Index");
+		resp.sendRedirect("/index");
 	}	
 }

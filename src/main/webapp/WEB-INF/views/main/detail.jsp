@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>     
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +30,7 @@
 				<li><a href="/main/mylist">관심목록</a></li>
 			</ul>
 			<ul class="topsearch">
-				<li><span>000님</span><a href="">로그아웃</a></li>
+				<li><span>${logonUser.name} 님</span><a href="/logout">로그아웃</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -36,49 +39,115 @@
 	  <div class="detail_wrap">
     <div class="width detail_top">
       <div class="detail_poster">
-        <img src="https://image.tmdb.org/t/p/w400/f6dNinWX8rBM79JXKcShkfSh2oA.jpg">
+        <img src="https://image.tmdb.org/t/p/w400/${moviedetail.poster_path }">
         <div class="detail_star">
-          <h4>한줄평</h4>
-          <form class="" action="index.html" method="post">
-            <input type="text" name="comment" value="">
-            <button type="submit" name="button"><i class="fa-regular fa-paper-plane"></i> 작성</button>
-          </form>
-          <p><i class="fa-solid fa-message-smile"></i>감사합니다.</p>
-          <p><i class="fa-solid fa-message-smile"></i>안녕하세요.</p>
-          <p><i class="fa-solid fa-message-smile"></i>잘가세요!</p>
-          <p><i class="fa-solid fa-message-smile"></i>잘봤어요!</p>
-          <p><i class="fa-solid fa-message-smile"></i>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          <p><i class="fa-solid fa-message-smile"></i>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        
+		<h4>한줄평</h4>
+		<form class="" action="/detail/comment-create" method="post">
+			<input type="hidden" name="movieId" value="${param.movieId}">
+			<input type="text" name="comments" value="">
+			<button type="submit" name="button">
+				<i class="fa-regular fa-paper-plane"></i> 작성
+			</button>
+		</form>
+		
+		<!-- 한줄평 영역(comment) -->
+		<c:forEach items="${commentList }" var="c" >
+			<p style="display: flex; justify-content: space-between;" ><i class="fa-solid fa-message-smile"></i>${c.comments }
+			<!-- 로그인 유저와 작성한 유저가 같을 때 -->
+			<c:if test="${logonUser.id eq c.id }">
+			<a href="/detail/comment-delete?commentId=${c.commentId }&movieId=${c.movieId}&id=${c.id}" style="color: white;">삭제</a>
+			</c:if>
+			</p>
+		</c:forEach>
+		
         </div>
       </div>
+      <!-- 영화 상세보기 영역(moviedetail)  -->
       <div class="detail_text">
-        <h2>다크나이트 <a href=""><i class="fa-solid fa-plus"></i></a> <a href="" class="active"><i class="fa-regular fa-check"></i></a></h2>
-        <h3>부제목</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <h2>${moviedetail.title }
+        
+        <c:choose>
+	        <c:when test="${movieLike}">
+	       		 <a href="/detail/movie-unlike?movieId=${moviedetail.id }&position=detail" class="active">
+	       		 <i class="fa-regular fa-check"></i></a>
+	  		</c:when>
+	  		
+	        <c:otherwise>
+	      	   <a href="/detail/mylist-movie?movieId=${moviedetail.id}&posterURL=${moviedetail.poster_path}&movieName=${moviedetail.title}">
+	       		 <i class="fa-solid fa-plus"></i></a> 
+	        </c:otherwise>
+        </c:choose>
+        </h2>
+        
+        <h3>${moviedetail.tagline }</h3>
+        <p>${moviedetail.overview }</p>
         <div class="detail_direc">
+        
           <h4>감독</h4>
-          <img src="https://image.tmdb.org/t/p/w200/xuAIuYSmsUzKlUMBFGVZaWsY3DZ.jpg">
-          <span>크리스토퍼 놀란</span>
-        </div>
+			<c:forEach items="${director}" var="d">
+				<c:choose>
+					<c:when test="${d.profile_path eq null}">
+						<img src="/resource/img/noimg.gif">
+						<span>${d.name }</span> 
+					</c:when>
+					<c:otherwise>
+						<img src="https://image.tmdb.org/t/p/w200/${d.profile_path }">
+						<span>${d.name }</span>
+					</c:otherwise>
+				</c:choose>
+				
+					<c:choose>
+						<c:when test="${d.like}">
+							<div>
+								<a href="/detail/director-unlike?movieId=${param.movieId}&directorId=${d.id}&position=detail"
+									style="color: green;"> ✔</a>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div>
+								<a href="/detail/mylist-director?movieId=${param.movieId}&directorId=${d.id}&posterURL=${d.profile_path}&directorName=${d.name}"
+									style="color: red;"> ❤ </a>
+							</div>
+						</c:otherwise>
+					</c:choose>
+					
+				</c:forEach>
+		</div>
+		
         <div class="detail_actor">
           <h4>배우</h4>
           <ul>
-            <li><img src="https://image.tmdb.org/t/p/w300/qCpZn2e3dimwbryLnqxZuI88PTi.jpg">
-            <span>크리스찬 베일</span></li>
-            <li><img src="https://image.tmdb.org/t/p/w300/5Y9HnYYa9jF4NunY9lSgJGjSe8E.jpg">
-            <span>크리스찬 베일</span></li>
-            <li><img src="https://image.tmdb.org/t/p/w300/hZruclwEPCKw3e83rnFSIH5sRFZ.jpg">
-            <span>크리스찬 베일</span></li>
-            <li><img src="https://image.tmdb.org/t/p/w300/2v9FVVBUrrkW2m3QOcYkuhq9A6o.jpg">
-            <span>크리스찬 베일</span></li>
-            <li><img src="https://image.tmdb.org/t/p/w300/5EFQvRHlpP1Iaw2e6vjOaBny6DV.jpg">
-            <span>크리스찬 베일</span></li>
+          	<c:forEach items="${actorList }" var="a">
+	            <li><img src="https://image.tmdb.org/t/p/w300/${a.profile_path }">
+	            <span>${a.name }</span></li>
+	            
+					<c:choose>
+						<c:when test="${a.like}">
+							<div>
+								<a href="/detail/actor-unlike?movieId=${param.movieId}&actorId=${a.id}&position=detail"
+									style="color: green;"> ✔</a>
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div>
+								<a href="/detail/mylist-actor?movieId=${param.movieId}&actorId=${a.id}&posterURL=${a.profile_path}&actorName=${a.name}"
+									style="color: red;"> ❤ </a>
+							</div>
+						</c:otherwise>
+					</c:choose>
+					
+			</c:forEach>
           </ul>
+         
         </div>
+        
+        <!-- 예고편 영역 (유튜브) -->
         <div class="de_youtube">
-          <iframe width="980" height="550" src="https://www.youtube.com/embed/ty1XzpkAAQA" title="YouTube video player" frameborder="0" 
+          <iframe width="980" height="550" src="https://www.youtube.com/embed/${presult }" title="YouTube video player" frameborder="0" 
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
+        
       </div>
     </div>
 

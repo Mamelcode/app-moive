@@ -12,21 +12,19 @@ import java.util.Map;
 import com.google.gson.Gson;
 
 import data.credit.Cast;
-import data.credit.Casts;
 import data.detail.MovieDetail;
-import data.detail.MovieGenre;
-import data.detail.MovieGenres;
-import data.movielist.Result;
 import data.movielist.Results;
+import data.preview.Presult;
 
 public class MovieAPI {
-	
+
 	// 추천영화 리스트를 타입별로 가져오는 메서드
 	public static Results getMovieList(String type, String page) {
 		try {
 			// type
-			// top_rated(평점순), popular(인기순), now_playing(현재상영중), latest(최신순), upcoming(상영예정작)
-			String target = "https://api.themoviedb.org/3/movie/"+ type +"";
+			// top_rated(평점순), popular(인기순), now_playing(현재상영중), latest(최신순),
+			// upcoming(상영예정작)
+			String target = "https://api.themoviedb.org/3/movie/" + type + "";
 
 			Map<String, String> params = new LinkedHashMap<>();
 			params.put("api_key", "8069e75d4de0c85b5ade5fc677a893a5");
@@ -44,7 +42,7 @@ public class MovieAPI {
 			Gson gson = new Gson();
 
 			Results result = gson.fromJson(resp.body(), Results.class);
-			
+
 			return result;
 
 		} catch (Exception e) {
@@ -53,7 +51,7 @@ public class MovieAPI {
 			return null;
 		}
 	}
-	
+
 	// 특정 영화의 디테일을 가져오는 메서드
 	public static MovieDetail getMoiveDetail(String movieId) {
 		try {
@@ -74,12 +72,12 @@ public class MovieAPI {
 			Gson gson = new Gson();
 
 			MovieDetail result = gson.fromJson(resp.body(), MovieDetail.class);
-			
-			return result; 
+
+			return result;
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			
+
 			return null;
 		}
 	}
@@ -94,7 +92,7 @@ public class MovieAPI {
 			params.put("language", "ko-KR");
 
 			String queryString = QueryStringBuilder.build(params);
-			
+
 			URI uri = new URI(target + "?" + queryString);
 
 			HttpClient client = HttpClient.newHttpClient();
@@ -102,54 +100,84 @@ public class MovieAPI {
 			HttpResponse<String> resp = client.send(req, BodyHandlers.ofString());
 
 			Gson gson = new Gson();
-			
+
 			Cast result = gson.fromJson(resp.body(), Cast.class);
+
+			return result;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+
+			return null;
+		}
+	}
+
+	// 영화 예고편 가져오는 메서드
+	public static Presult getPreview(String movieId) {
+		try {
+
+			String target = "https://api.themoviedb.org/3/movie/" + movieId + "/videos";
+
+			Map<String, String> params = new LinkedHashMap<>();
+			params.put("api_key", "8069e75d4de0c85b5ade5fc677a893a5");
+
+			String queryString = QueryStringBuilder.build(params);
+
+			URI uri = new URI(target + "?" + queryString);
+
+			HttpClient client = HttpClient.newHttpClient();
+			HttpRequest req = HttpRequest.newBuilder().uri(uri).GET().build();
+			HttpResponse<String> resp = client.send(req, BodyHandlers.ofString());
+
+			Gson gson = new Gson();
+
+			Presult result = gson.fromJson(resp.body(), Presult.class);
+
 			
 			return result;
 			
 		} catch (Exception e) {
 			e.printStackTrace();
-			
+
 			return null;
 		}
+
 	}
 
 	public static void main(String[] args) {
-		
-		/* 무비크레딧 테스트
-		Cast re = getCreditList("594767");
-		System.out.println("ID.. "+ re.getCast()[0].getId());
-		System.out.println("이름.. "+ re.getCast()[0].getName());
-		System.out.println("직업.. "+ re.getCast()[0].getKnown_for_department());
-		System.out.println("프로필사진.. "+ re.getCast()[0].getProfile_path());
-		System.out.println("번호.. "+ re.getCast()[0].getOrder());
-		*/
-		
-		/* 무비디테일 테스트
-		MovieDetail re = getMoiveDetail("594767");
-		System.out.println("ID.. "+ re.getId());
-		System.out.println("제목.. "+ re.getTitle());
-		System.out.println("슬로건.. "+ re.getTagline());
-		System.out.println("내용.. "+ re.getOverview());
-		System.out.println("포스터.. "+ re.getPoster_path());
-		for(MovieGenre e : re.getGenres()) {
-			System.out.println("장르ID.. "+ e.getId());
-			System.out.println("장르ID.. "+ e.getName());
-		}
-		*/
 
-		/* 무비리스트 테스트
-		Results re = getMovieList("now_playing", "1");
 		
-		for(Result r : re.getResults()) {
-			System.out.println("ID.. "+ r.getId());
-			System.out.println("제목.. "+r.getTitle());
-			System.out.println("줄거리.. "+r.getOverview());
-			System.out.println("평점.. "+r.getVote_average());
-			System.out.println("포스터.. "+r.getPoster_path());
-			System.out.println();
-		}
-		*/
+		Presult pr = getPreview("502356");
+		System.out.println("pr ... => " + pr.getResults()[0].getKey());
+		
+		
+		/*
+		 * 무비크레딧 테스트 Cast re = getCreditList("594767"); System.out.println("ID.. "+
+		 * re.getCast()[0].getId()); System.out.println("이름.. "+
+		 * re.getCast()[0].getName()); System.out.println("직업.. "+
+		 * re.getCast()[0].getKnown_for_department()); System.out.println("프로필사진.. "+
+		 * re.getCast()[0].getProfile_path()); System.out.println("번호.. "+
+		 * re.getCast()[0].getOrder());
+		 */
+
+		/*
+		 * 무비디테일 테스트 MovieDetail re = getMoiveDetail("594767");
+		 * System.out.println("ID.. "+ re.getId()); System.out.println("제목.. "+
+		 * re.getTitle()); System.out.println("슬로건.. "+ re.getTagline());
+		 * System.out.println("내용.. "+ re.getOverview()); System.out.println("포스터.. "+
+		 * re.getPoster_path()); for(MovieGenre e : re.getGenres()) {
+		 * System.out.println("장르ID.. "+ e.getId()); System.out.println("장르ID.. "+
+		 * e.getName()); }
+		 */
+
+		/*
+		 * 무비리스트 테스트 Results re = getMovieList("now_playing", "1");
+		 * 
+		 * for(Result r : re.getResults()) { System.out.println("ID.. "+ r.getId());
+		 * System.out.println("제목.. "+r.getTitle());
+		 * System.out.println("줄거리.. "+r.getOverview());
+		 * System.out.println("평점.. "+r.getVote_average());
+		 * System.out.println("포스터.. "+r.getPoster_path()); System.out.println(); }
+		 */
 	}
 }
-

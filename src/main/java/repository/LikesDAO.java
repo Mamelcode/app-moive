@@ -16,11 +16,12 @@ public class LikesDAO extends DAO {
 	
 	// =================영화 좋아요 부분 시작
 	// DB에 영화 좋아요 등록 하는 메서드
-	public static int createLikeMoive(String movieId, String id, String posterURL) {
+	public static int createLikeMoive(String movieId, String id, String posterURL, String movieName) {
 		SqlSession session = factory.openSession(true);
 		Map<String, Object> map = new HashMap<>();
 		map.put("movieId", movieId);
 		map.put("id", id);
+		map.put("movieName", movieName);
 		map.put("posterURL", posterURL);
 		try {
 			return session.insert("like.movieLikeCreate", map);
@@ -57,12 +58,13 @@ public class LikesDAO extends DAO {
 	
 	// =================배우 좋아요 부분 시작
 	// DB에 배우 좋아요 등록 하는 메서드
-	public static int createLikeActor(String actorId, String id, String posterURL) {
+	public static int createLikeActor(String actorId, String id, String posterURL, String actorName) {
 		SqlSession session = factory.openSession(true);
 		Map<String, Object> map = new HashMap<>();
 		map.put("actorId", actorId);
 		map.put("id", id);
 		map.put("posterURL", posterURL);
+		map.put("actorName", actorName);
 		try {
 			return session.insert("like.actorLikeCreate", map);
 		} finally {
@@ -98,12 +100,13 @@ public class LikesDAO extends DAO {
 		
 	// =================감독 좋아요 부분 시작
 	// DB에 감독 좋아요 등록 하는 메서드
-	public static int createLikeDirector(String directorId, String id, String posterURL) {
+	public static int createLikeDirector(String directorId, String id, String posterURL, String directorName) {
 		SqlSession session = factory.openSession(true);
 		Map<String, Object> map = new HashMap<>();
 		map.put("directorId", directorId);
 		map.put("id", id);
 		map.put("posterURL", posterURL);
+		map.put("directorName", directorName);
 		try {
 			return session.insert("like.directorLikeCreate", map);
 		} finally {
@@ -123,7 +126,7 @@ public class LikesDAO extends DAO {
 		}
 	}
 	
-	// DB에서 사용자의 특정 배우 좋아요를 삭제하는 메서드
+	// DB에서 사용자의 특정 감독 좋아요를 삭제하는 메서드
 	public static int deleteLikeDirector(String directorId, String id) {
 		SqlSession session = factory.openSession(true);
 		Map<String, Object> map = new HashMap<>();

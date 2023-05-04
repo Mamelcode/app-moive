@@ -11,16 +11,20 @@ public class UsersDAO extends DAO {
 	
 	// DB에 회원가입을 처리하는 메서드
 	public static int createUser(String id, String pass, String name) {
-			SqlSession session = factory.openSession(true);
-			Map<String, Object> map = new HashMap<>();
-			map.put("id", id);
-			map.put("pass", pass);
-			map.put("name", name);
+		SqlSession session = factory.openSession(true);
+		Map<String, Object> map = new HashMap<>();
+		map.put("id", id);
+		map.put("pass", pass);
+		map.put("name", name);
 		try {
-			return session.insert("users.create", map);
-		} finally {
+			int reuslt = session.insert("users.create", map);
 			session.close();
+			return reuslt;
 		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}	
 	}
 	
 	// DB에서 유저정보를 가져오는 테스트(로그인시 필요함)

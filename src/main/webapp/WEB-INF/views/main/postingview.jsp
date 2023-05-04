@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +30,7 @@
 				<li><a href="/main/mylist">관심목록</a></li>
 			</ul>
 			<ul class="topsearch">
-				<li><span>000님</span><a href="">로그아웃</a></li>
+				<li><span>${logonUser.name} 님</span><a href="/logout">로그아웃</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -39,7 +42,7 @@
       <h2>제목</h2>
       <input type="text" name="title" value="" placeholder="제목을 입력해주세요.">
       <h2>내용</h2>
-      <textarea name="content" rows="8" cols="80" placeholder="내용을 입력해주세요."></textarea>
+      <textarea name="contents" rows="8" cols="80" placeholder="내용을 입력해주세요."></textarea>
       <div class="commu_btn">
         <a href="/main/postlist"><button type="button" name="button">취소</button></a>
         <button type="submit" name="button">작성</button>

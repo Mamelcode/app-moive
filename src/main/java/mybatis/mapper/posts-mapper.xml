@@ -33,5 +33,15 @@
 	<delete id="postDelecte" parameterType="String">
 		DELETE FROM POSTS WHERE POST_ID = #{postId}
 	</delete>
-	
+
+	<!-- 조회수 -->
+	<update id="postup" parameterType="String">
+		UPDATE POSTS SET VIEWS = VIEWS + 1 WHERE POST_ID = #{postId}
+	</update>
+
+	<!-- 게시글 총 개수 (페이징 처리) -->	
+	<select id="count" resultType="int">
+		SELECT COUNT(*) FROM POSTS
+	</select>
+
 </mapper>

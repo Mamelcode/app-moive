@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>      
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +30,7 @@
 				<li><a href="/main/mylist">관심목록</a></li>
 			</ul>
 			<ul class="topsearch">
-				<li><span>000님</span><a href="">로그아웃</a></li>
+				<li><span>${logonUser.name} 님</span><a href="/logout">로그아웃</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -35,22 +38,24 @@
 	
 	<div class="commu_wrap">
     <div class="commu_detail">
-      <h2>제목입니다.</h2>
+      <h2>${post.title }</h2>
       <div class="commu_info">
-        <h3><i class="fa-regular fa-user"></i> 글쓴이</h3>
+        <h3><i class="fa-regular fa-user"></i> ${post.name }</h3>
         <ul>
-          <li><i class="fa-regular fa-calendar"></i>2023-04-26</li>
-          <li><i class="fa-regular fa-eye"></i>20500</li>
+          <li><i class="fa-regular fa-calendar"></i>${post.dates }</li>
+          <li><i class="fa-regular fa-eye"></i>${post.views }</li>
         </ul>
       </div>
     </div>
 
     <div class="commu_text">
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      <p>${post.contents }</p>
     </div>
     <div class="post_del">
-      <a href="#"><i class="fa-solid fa-square-pen"></i> 수정</a>
-      <a href="#"><i class="fa-solid fa-square-xmark"></i> 삭제</a>
+    	<c:if test="${logonUser.id eq post.id }">
+      		<a href="/modify?postId=${post.postId }"><i class="fa-solid fa-square-pen"></i> 수정</a>
+      		<a href="/post-delete?postId=${post.postId }"><i class="fa-solid fa-square-xmark"></i> 삭제</a>
+      	</c:if>
     </div>
   </div>
 

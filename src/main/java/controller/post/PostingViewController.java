@@ -18,5 +18,6 @@ public class PostingViewController extends HttpServlet{
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 	
 		req.getRequestDispatcher("/WEB-INF/views/main/postingview.jsp").forward(req, resp);
+		
 	}
 }

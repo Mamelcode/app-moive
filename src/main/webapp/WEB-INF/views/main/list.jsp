@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>      
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,7 +38,7 @@
 				</li>
 			</ul>
 			<ul class="topsearch">
-				<li><span>000님</span><a href="">로그아웃</a></li>
+				<li><span>${logonUser.name} 님</span><a href="/logout">로그아웃</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -47,39 +50,13 @@
 
       <div class="swiper firstSwiper">
         <div class="swiper-wrapper">
+        <!-- 인기순 영역 -->
+        <c:forEach items="${popular}" var="p">
           <div class="swiper-slide list_box">
-            <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/oAt6OtpwYCdJI76AVtVKW1eorYx.jpg"></a>
+            <a href="/main/detail?movieId=${p.id}"><img src="https://image.tmdb.org/t/p/w300/${p.poster_path}"></a>
           </div>
-          <div class="swiper-slide list_box">
-            <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/oAt6OtpwYCdJI76AVtVKW1eorYx.jpg"></a>
-          </div>
-          <div class="swiper-slide list_box">
-            <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/oAt6OtpwYCdJI76AVtVKW1eorYx.jpg"></a>
-          </div>
-          <div class="swiper-slide list_box">
-            <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/oAt6OtpwYCdJI76AVtVKW1eorYx.jpg"></a>
-          </div>
-          <div class="swiper-slide list_box">
-            <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/oAt6OtpwYCdJI76AVtVKW1eorYx.jpg"></a>
-          </div>
-          <div class="swiper-slide list_box">
-            <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/oAt6OtpwYCdJI76AVtVKW1eorYx.jpg"></a>
-          </div>
-          <div class="swiper-slide list_box">
-            <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/oAt6OtpwYCdJI76AVtVKW1eorYx.jpg"></a>
-          </div>
-          <div class="swiper-slide list_box">
-            <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/oAt6OtpwYCdJI76AVtVKW1eorYx.jpg"></a>
-          </div>
-          <div class="swiper-slide list_box">
-            <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/oAt6OtpwYCdJI76AVtVKW1eorYx.jpg"></a>
-          </div>
-          <div class="swiper-slide list_box">
-            <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/oAt6OtpwYCdJI76AVtVKW1eorYx.jpg"></a>
-          </div>
-          <div class="swiper-slide list_box">
-            <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/oAt6OtpwYCdJI76AVtVKW1eorYx.jpg"></a>
-          </div>
+        </c:forEach>
+        
         </div>
       </div>
       <div class="swiper-btn">
@@ -95,40 +72,14 @@
 
       <div class="swiper secondSwiper">
         <div class="swiper-wrapper">
+        <!-- 평점순 영역 -->
+         <c:forEach items="${topRated }" var="t" >
           <div class="swiper-slide list_box">
-            <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/tAXXuEAKLk2mOEIJzwajJQEnVZu.jpg"></a>
+            <a href="/main/detail?movieId=${t.id}"><img src="https://image.tmdb.org/t/p/w300/${t.poster_path }"></a>
           </div>
-          <div class="swiper-slide list_box">
-            <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/tAXXuEAKLk2mOEIJzwajJQEnVZu.jpg"></a>
-          </div>
-          <div class="swiper-slide list_box">
-            <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/tAXXuEAKLk2mOEIJzwajJQEnVZu.jpg"></a>
-          </div>
-          <div class="swiper-slide list_box">
-            <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/tAXXuEAKLk2mOEIJzwajJQEnVZu.jpg"></a>
-          </div>
-          <div class="swiper-slide list_box">
-            <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/tAXXuEAKLk2mOEIJzwajJQEnVZu.jpg"></a>
-          </div>
-          <div class="swiper-slide list_box">
-            <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/tAXXuEAKLk2mOEIJzwajJQEnVZu.jpg"></a>
-          </div>
-          <div class="swiper-slide list_box">
-            <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/tAXXuEAKLk2mOEIJzwajJQEnVZu.jpg"></a>
-          </div>
-          <div class="swiper-slide list_box">
-            <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/tAXXuEAKLk2mOEIJzwajJQEnVZu.jpg"></a>
-          </div>
-          <div class="swiper-slide list_box">
-            <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/tAXXuEAKLk2mOEIJzwajJQEnVZu.jpg"></a>
-          </div>
-          <div class="swiper-slide list_box">
-            <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/tAXXuEAKLk2mOEIJzwajJQEnVZu.jpg"></a>
-          </div>
-          <div class="swiper-slide list_box">
-            <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/tAXXuEAKLk2mOEIJzwajJQEnVZu.jpg"></a>
-          </div>
-        </div>
+          </c:forEach>
+          
+         </div>
       </div>
       <div class="swiper-btn2">
         <div class="swiper-prev2"><i class="fa-solid fa-chevron-left"></i></div>
@@ -139,43 +90,17 @@
 
   <div class="list_wrap">
     <div class="width">
-      <h2 class="title">최신순</h2>
+      <h2 class="title">현재상영중</h2>
 
       <div class="swiper thirdSwiper">
         <div class="swiper-wrapper">
+          <!-- 현재상영중 영역 -->
+         <c:forEach items="${nowPlaying }" var="n">
           <div class="swiper-slide list_box">
-            <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/f6dNinWX8rBM79JXKcShkfSh2oA.jpg"></a>
+            <a href="/main/detail?movieId=${n.id}"><img src="https://image.tmdb.org/t/p/w300/${n.poster_path }"></a>
           </div>
-          <div class="swiper-slide list_box">
-            <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/f6dNinWX8rBM79JXKcShkfSh2oA.jpg"></a>
-          </div>
-          <div class="swiper-slide list_box">
-            <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/f6dNinWX8rBM79JXKcShkfSh2oA.jpg"></a>
-          </div>
-          <div class="swiper-slide list_box">
-            <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/f6dNinWX8rBM79JXKcShkfSh2oA.jpg"></a>
-          </div>
-          <div class="swiper-slide list_box">
-            <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/f6dNinWX8rBM79JXKcShkfSh2oA.jpg"></a>
-          </div>
-          <div class="swiper-slide list_box">
-            <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/f6dNinWX8rBM79JXKcShkfSh2oA.jpg"></a>
-          </div>
-          <div class="swiper-slide list_box">
-            <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/f6dNinWX8rBM79JXKcShkfSh2oA.jpg"></a>
-          </div>
-          <div class="swiper-slide list_box">
-            <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/f6dNinWX8rBM79JXKcShkfSh2oA.jpg"></a>
-          </div>
-          <div class="swiper-slide list_box">
-            <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/f6dNinWX8rBM79JXKcShkfSh2oA.jpg"></a>
-          </div>
-          <div class="swiper-slide list_box">
-            <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/f6dNinWX8rBM79JXKcShkfSh2oA.jpg"></a>
-          </div>
-          <div class="swiper-slide list_box">
-            <a href="www.naver.com"><img src="https://image.tmdb.org/t/p/w300/f6dNinWX8rBM79JXKcShkfSh2oA.jpg"></a>
-          </div>
+         </c:forEach>
+         
         </div>
       </div>
       <div class="swiper-btn2">

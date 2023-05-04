@@ -5,8 +5,8 @@
 <mapper namespace="like">
 	<!--영화 좋아요 생성 -->
 	<insert id="movieLikeCreate" parameterType="hashmap">
-		INSERT INTO LIKEMOVIES(MOVIE_ID, ID, POSTER_URL) 
-		VALUES(#{movieId}, #{id}, #{posterURL})
+		INSERT INTO LIKEMOVIES(MOVIE_ID, ID, POSTER_URL, MOVIE_NAME) 
+		VALUES(#{movieId}, #{id}, #{posterURL}, #{movieName})
 	</insert>
 	<!-- 영화 좋아요 불러오기  -->
 	<select id="movieFindById" parameterType="string" resultType="data.LikeMovie">
@@ -19,8 +19,8 @@
 	
 	<!-- 배우 좋아요 생성 -->
 	<insert id="actorLikeCreate" parameterType="hashmap">
-		INSERT INTO LIKEACTORS(ACTOR_ID, ID, POSTER_URL) 
-		VALUES(#{actorId}, #{id}, #{posterURL})
+		INSERT INTO LIKEACTORS(ACTOR_ID, ID, POSTER_URL, ACTOR_NAME) 
+		VALUES(#{actorId}, #{id}, #{posterURL}, #{actorName})
 	</insert>
 	<!-- 배우 좋아요 불러오기  -->
 	<select id="actorFindById" parameterType="string" resultType="data.LikeActor">
@@ -33,8 +33,8 @@
 	
 	<!--감독 좋아요 생성 -->
 	<insert id="directorLikeCreate" parameterType="hashmap">
-		INSERT INTO LIKEDIRECTORS(DIRECTOR_ID, ID, POSTER_URL) 
-		VALUES(#{directorId}, #{id}, #{posterURL})
+		INSERT INTO LIKEDIRECTORS(DIRECTOR_ID, ID, POSTER_URL, DIRECTOR_NAME) 
+		VALUES(#{directorId}, #{id}, #{posterURL}, #{directorName})
 	</insert>
 	<!-- 감독 좋아요 불러오기  -->
 	<select id="directorFindById" parameterType="string" resultType="data.LikeDirector">

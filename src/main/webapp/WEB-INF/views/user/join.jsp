@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,6 +41,15 @@
           <p>비밀번호</p>
           <input type="password" name="pass" placeholder="비밀번호">
           <button type="submit" name="button">회원가입</button>
+          <c:if test="${param.error eq 1}">
+          	<p>회원가입에 실패 했습니다.</p>
+          </c:if>
+          <c:if test="${param.error eq 2}">
+          	<p>모든 칸을 작성해주세요!</p>
+          </c:if>
+          <c:if test="${param.error eq 3}">
+          	<p>조건에 충족하지 못했습니다.</p>
+          </c:if>
         </form>
 
         <div class="login_noid">

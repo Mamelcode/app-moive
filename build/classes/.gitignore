@@ -1,5 +1,6 @@
 /controller/
-/data/
-/util/
-/mybatis/
 /repository/
+/util/
+/data/
+/mybatis/
+/service/

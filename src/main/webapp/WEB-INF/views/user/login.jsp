@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,6 +38,18 @@
           <input type="text" name="id" placeholder="아이디">
           <p>비밀번호</p>
           <input type="password" name="pass" placeholder="비밀번호">
+          
+          <!-- 에러 띄워주는 화면 -->
+          <c:if test="${param.error eq 1}">
+          	<p>존재하지 않는 아이디 입니다.</p>
+          </c:if>
+           <c:if test="${param.error eq 2}">
+          	<p>로그인 정보를 입력해주세요.</p>
+          </c:if>
+           <c:if test="${param.error eq 3}">
+          	<p>비밀번호가 일치하지 않습니다.</p>
+          </c:if>
+          
           <button type="submit" name="button">로그인</button>
         </form>
 

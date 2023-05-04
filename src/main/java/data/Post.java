@@ -4,13 +4,13 @@ import java.sql.Date;
 
 public class Post {
 
-	String postId;
-	String id;
-	String title;
-	String contents;
-	Date dates;
-	int views;
-	String name;
+	String postId; // 게시글 id (고유값) 
+	String id; // 유저 id 
+	String title;  // 글제목
+	String contents; // 글내용
+	Date dates; // 글작성일
+	int views; // 글조회수
+	String name; // 작성자 닉네임
 	
 	
 	
