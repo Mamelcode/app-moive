@@ -175,14 +175,14 @@ public class MovieAPI {
 	}
 	
 	// 영화 검색에 사용하는 메서드
-	public static Results getMovieSearchList(String query) {
+	public static Results getMovieSearchList(String query, String page) {
 		try {
 			String target = "https://api.themoviedb.org/3/search/movie";
 			
 			Map<String, String> params = new LinkedHashMap<>();
 			params.put("api_key", "8069e75d4de0c85b5ade5fc677a893a5");
 			params.put("language", "ko-KR");
-			params.put("page", "1");
+			params.put("page", page);
 			params.put("query", query);
 			
 			String queryString = QueryStringBuilder.build(params);
@@ -243,15 +243,14 @@ public class MovieAPI {
 		System.out.println(result.getResults()[0].getKey());
 		*/
 		
-		/* 무비 서치 테스트
-		Results result = getMovieSearchList("어벤져스");
+		/* 영화 검색 테스트
+		Results result = getMovieSearchList("어벤져스+인피니티+워");
 		System.out.println(result.getResults()[0].getId());
 		System.out.println(result.getResults()[0].getTitle());
 		System.out.println(result.getResults()[0].getOverview());
 		System.out.println(result.getResults()[0].getPoster_path());
 		System.out.println(result.getResults()[0].getVote_average());
 		*/
-		
 		
 		/* 무비크레딧 테스트
 		Cast re = getCreditList("594767");

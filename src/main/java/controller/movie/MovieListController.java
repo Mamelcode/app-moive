@@ -85,7 +85,6 @@ public class MovieListController extends HttpServlet {
 					req.setAttribute("directorfeat", directorfeat);
 					req.setAttribute("directorName", director.getDirectorName());
 					req.setAttribute("directorfeatSize", directorfeat.size());
-					System.out.println(directorfeat.size());
 				}
 				
 				// 배우의 출연작 추천

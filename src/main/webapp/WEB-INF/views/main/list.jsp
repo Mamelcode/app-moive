@@ -32,22 +32,10 @@
 				<li>
 					<div class="search_box">
 							<form action="/main/search">
-								<input type="text" name="search" id="search" placeholder="Search..." list="slist">
+								<input type="search" name="search" id="search" placeholder="Search..." list="slist">
 								<span class="icon"><i class="fa fa-search"></i></span> 
 								<ul class="search_list">
 									<li id="ajax_list">
-									 	<ul class="search_result">
-									 		<li class="result_img"><img src="https://image.tmdb.org/t/p/w300/kmP6viwzcEkZeoi1LaVcQemcvZh.jpg"></li>
-									 		<li><a href="" class="search_tit">어벤져스 인피니티 워(2018)</a><a href="" class="search_stit">어벤져스팀과 타노스팀의 격돌!</a></li>
-									 	</ul>
-									 	<ul class="search_result">
-									 		<li class="result_img"><img src="https://image.tmdb.org/t/p/w300/kmP6viwzcEkZeoi1LaVcQemcvZh.jpg"></li>
-									 		<li><a href="" class="search_tit">어벤져스 인피니티 워(2018)</a><a href="" class="search_stit">어벤져스팀과 타노스팀의 격돌!</a></li>
-									 	</ul>
-									 	<ul class="search_result">
-									 		<li class="result_img"><img src="https://image.tmdb.org/t/p/w300/kmP6viwzcEkZeoi1LaVcQemcvZh.jpg"></li>
-									 		<li><a href="" class="search_tit">어벤져스 인피니티 워(2018)</a><a href="" class="search_stit">어벤져스팀과 타노스팀의 격돌!</a></li>
-									 	</ul>
 									</li>
 								</ul>
 							</form>
@@ -83,7 +71,7 @@
 			let target = evt.target.value;
 			
 			const xhr = new XMLHttpRequest();
-			xhr.open("get", "/main/search?search="+target, true);
+			xhr.open("get", "/search/ajax?search="+target, true);
 			xhr.send();
 			
 			xhr.onreadystatechange = function() {

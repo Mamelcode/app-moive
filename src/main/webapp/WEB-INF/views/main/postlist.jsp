@@ -66,7 +66,7 @@
         <a href="/post/write"><i class="fa-solid fa-square-pen"></i> 글쓰기</a>
       </div>
 
-	<c:set var="currentPage" value="${empty param.page ? 1: param.page }"/>
+		<c:set var="currentPage" value="${empty param.page ? 1: param.page }"/>
       <div class="page_nav">
 
 			<%-- prve 처리 --%>
