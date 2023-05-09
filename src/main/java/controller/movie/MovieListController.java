@@ -50,13 +50,16 @@ public class MovieListController extends HttpServlet {
 					List<Result> similarList = new ArrayList<>();
 					Results similarList1 = MovieAPI.getMovieSimilarList(movie.getMovieId());
 					// 포스터 값이 null 이 아닌 영화만 담는다.
-					for(Result r : similarList1.getResults()) {
-						if(r.getPoster_path() != null) {
-							similarList.add(r);
+					if(similarList1.getTotal_results() != 0) {
+						for(Result r : similarList1.getResults()) {
+							if(r.getPoster_path() != null) {
+								similarList.add(r);
+							}
 						}
+					
+						req.setAttribute("similarList", similarList);
+						req.setAttribute("movieName", movie.getMovieName());
 					}
-					req.setAttribute("similarList", similarList);
-					req.setAttribute("movieName", movie.getMovieName());
 				}
 				
 				// 감독의 연출작 추천

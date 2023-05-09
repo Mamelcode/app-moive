@@ -12,7 +12,7 @@ import data.Post;
 
 public class PostsDAO extends DAO {
 	
-	// DB에 글등록을 처리해주는 메서드
+	// DB에 글등록을 처리해주는 메서드	==> insert
 	public static int createPost(String postId, String id, String name, String title, String contents) {
 		SqlSession session = factory.openSession(true);
 		Map<String, Object> map = new HashMap<>();
@@ -22,13 +22,16 @@ public class PostsDAO extends DAO {
 		map.put("name", name);
 		map.put("contents", contents);
 		try {
-			return session.insert("post.create", map);
-		} finally {
+			int result = session.insert("post.create", map);
 			session.close();
+			return result;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return -1;
 		}
 	}
 	
-	// DB에서 해당글 정보를 가저오는 메서드(글 상세보기에 필요함)
+	// DB에서 해당글 정보를 가저오는 메서드(글 상세보기에 필요함)	==> select
 	public static Post findByPost(String postId) {
 		SqlSession session = factory.openSession();
 		try {
@@ -38,7 +41,7 @@ public class PostsDAO extends DAO {
 		}
 	}
 	
-	// DB에서 a ~ b 번의 글 정보를 가저오는 메서드(게시판 리스트에 필요)
+	// DB에서 a ~ b 번의 글 정보를 가저오는 메서드(게시판 리스트에 필요)	==> select
 	public static List<Post> findByPostAtoB(int a, int b) {
 		SqlSession session = factory.openSession();
 		Map<String, Object> map = new HashMap<>();
@@ -54,17 +57,20 @@ public class PostsDAO extends DAO {
 		}
 	}
 	
-	// DB에서 해당글을 삭제하는 메서드
+	// DB에서 해당글을 삭제하는 메서드	==> delete
 	public static int postDelecte(String postId) {
 		SqlSession session = factory.openSession(true);
 		try {
-			return session.delete("post.postDelecte", postId);
-		} finally {
+			int result = session.delete("post.postDelecte", postId); 
 			session.close();
+			return result;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return -1;
 		}
 	}
 	
-	// DB에서 글을 수정하는 메서드
+	// DB에서 글을 수정하는 메서드		==> update
 	public static int postUpdate(String postId, String title, String contents) {
 		SqlSession session = factory.openSession(true);
 		Map<String, Object> map = new HashMap<>();
@@ -72,23 +78,29 @@ public class PostsDAO extends DAO {
 		map.put("title", title);
 		map.put("contents", contents);
 		try {
-			return session.update("post.postUpdate", map);
-		} finally {
+			int result = session.update("post.postUpdate", map);
 			session.close();
+			return result;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return -1;
 		}
 	}
 	
-	// DB에서 조회수를 증가시키는 메서드
+	// DB에서 조회수를 증가시키는 메서드		==> update
 	public static int postViewUpdate(String postId) {
 		SqlSession session = factory.openSession(true);
 		try {
-			return session.update("post.updateViews", postId);
-		} finally {
+			int result = session.update("post.updateViews", postId);
 			session.close();
+			return result;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return -1;
 		}
 	}
 	
-	// 게시글 전체 갯수 가져오는 메서드
+	// 게시글 전체 갯수 가져오는 메서드		==> select
 	public static int postCount() {
 		SqlSession session = factory.openSession(true);
 		try {

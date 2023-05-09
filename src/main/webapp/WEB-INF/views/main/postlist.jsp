@@ -39,29 +39,29 @@
   <div class="commu_wrap">
     <h2>커뮤니티</h2>
     <table>
-				<thead class="table_head">
+		<thead class="table_head">
           <tr>
             <th>번호</th>
-  					<th>제목</th>
-  					<th>글쓴이</th>
-  					<th>작성일</th>
-  					<th>조회</th>
+			<th>제목</th>
+			<th>글쓴이</th>
+			<th>작성일</th>
+			<th>조회</th>
           </tr>
-				</thead>
+		</thead>
 				
-				<tbody>
-						<c:forEach items="${list}" var="post" varStatus="num" >
-						<tr>
-							<td>${param.page eq 1 ? num.count : (idx - 10) + num.count}</td>
-							<td><a href="/post/detail?postId=${post.postId}">${post.title}</a></td>
-							<td>${post.name}</td>
-							<td>${post.dates}</td>
-							<td>${post.views}</td>
-						</tr>
-						</c:forEach>
-				</tbody>
+		<tbody>
+				<c:forEach items="${list}" var="post" varStatus="num" >
+				<tr>
+					<td>${param.page eq 1 ? num.count : (idx - 10) + num.count}</td>
+					<td><a href="/post/detail?postId=${post.postId}">${post.title}</a></td>
+					<td>${post.name}</td>
+					<td>${post.dates}</td>
+					<td>${post.views}</td>
+				</tr>
+				</c:forEach>
+		</tbody>
 				
-			</table>
+	</table>
       <div class="post_write">
         <a href="/post/write"><i class="fa-solid fa-square-pen"></i> 글쓰기</a>
       </div>

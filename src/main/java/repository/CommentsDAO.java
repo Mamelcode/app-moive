@@ -13,7 +13,7 @@ import data.Post;
 
 public class CommentsDAO extends DAO {
 	
-	// DB에 영화 한줄평을 등록하는 메서드
+	// DB에 영화 한줄평을 등록하는 메서드		==> insert
 	public static int createComment(String commentId, String movieId, String id, String name, String comments) {
 		SqlSession session = factory.openSession(true);
 		Map<String, Object> map = new HashMap<>();
@@ -23,13 +23,16 @@ public class CommentsDAO extends DAO {
 		map.put("comments", comments);
 		map.put("name", name);
 		try {
-			return session.insert("comment.create", map);
-		} finally {
+			int result = session.insert("comment.create", map);
 			session.close();
+			return result;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return -1;
 		}
 	}
 	
-	// DB에서 a ~ b 번의 영화 한줄평 정보를 가저오는 메서드(영화 한줄평 리스트에 필요)
+	// DB에서 a ~ b 번의 영화 한줄평 정보를 가저오는 메서드(영화 한줄평 리스트에 필요)		==> select
 	public static List<Comment> findByCommentsAtoB (String movieId, int a, int b) {
 		SqlSession session = factory.openSession();
 		Map<String, Object> map = new HashMap<>();
@@ -45,13 +48,16 @@ public class CommentsDAO extends DAO {
 		}
 	}
 	
-	// DB에서 코멘트 삭제하는 메서드
+	// DB에서 코멘트 삭제하는 메서드		==> delete
 	public static int deleteComment(String commentId) {
 		SqlSession session = factory.openSession(true);
 		try {
-			return session.delete("comment.delete", commentId);
-		} finally {
+			int result = session.delete("comment.delete", commentId);
 			session.close();
+			return result;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return -1;
 		}
 	}
 	

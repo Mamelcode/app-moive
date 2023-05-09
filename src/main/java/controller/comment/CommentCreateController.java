@@ -34,7 +34,7 @@ public class CommentCreateController extends HttpServlet{
 				
 		// 파라미터 값 빈값 체크
 		if(comment == "") {
-			resp.sendRedirect("/main/detail?movieId="+movieId);
+			resp.sendRedirect("/main/detail?movieId="+movieId+"&error=1");
 			return;
 		}
 		

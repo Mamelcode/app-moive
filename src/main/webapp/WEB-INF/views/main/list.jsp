@@ -48,6 +48,8 @@
 		</div>
 	</nav>
 	<!-- 탑 메뉴  끝 -->
+	
+	<!-- 서치 스크립트 -->
 	<script type="text/javascript">
 		const input = document.getElementById("search");
 	
@@ -65,7 +67,9 @@
 			$('.search_list').removeClass('active')
 		});
 	</script>
+	<!-- 서치 스크립트 -->
 	
+	<!-- 서치 AJAX -->
 	<script type="text/javascript">
 		const getValue = document.getElementById("search").onkeyup = function(evt) {
 			let target = evt.target.value;
@@ -99,6 +103,7 @@
 			}
 		};
 	</script>
+	<!-- 서치 AJAX -->
 
 	<!-- 첫번째 슬라이드 시작 -->
 	<div class="list_wrap">

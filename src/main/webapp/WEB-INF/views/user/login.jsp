@@ -39,13 +39,13 @@
           <p>비밀번호</p>
           <input type="password" name="pass" placeholder="비밀번호(필수)">
           <c:if test="${param.error eq 3}">
-          	<p style="color: red; text-align: center;">정보가 옳바르지 않습니다.</p>
+          	<p class="error_text">정보가 올바르지 않습니다.</p>
           </c:if>
           <c:if test="${param.error eq 2}">
-          	<p style="color: red; text-align: center;">정보가 일치하지 않습니다.</p>
+          	<p class="error_text">정보가 일치하지 않습니다.</p>
           </c:if>
           <c:if test="${param.error eq 1}">
-          	<p style="color: red; text-align: center;">정보를 빠짐없이 입력해주세요.</p>
+          	<p class="error_text">정보를 빠짐없이 입력해 주세요.</p>
           </c:if>
           <button type="submit" name="button">로그인</button>
         </form>

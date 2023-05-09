@@ -31,6 +31,10 @@ public class SearchController extends HttpServlet {
 		}
 		
 		data.movielist.Results searchList = MovieAPI.getMovieSearchList(search, page == null ? "1" : page);
+		if(searchList == null) {
+			req.getRequestDispatcher("/WEB-INF/views/main/search.jsp?error=1").forward(req, resp);
+			return;
+		}
 		
 		int total = searchList.getTotal_results();
 		int totalPage = total/20 + (total % 20 > 0 ? 1 : 0);

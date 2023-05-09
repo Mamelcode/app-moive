@@ -57,6 +57,9 @@
 		<div class="commu_text">
 			<p>${post.contents}</p>
 		</div>
+			<div class="post_del">
+				<a href="/main/postlist">글목록</a>
+			</div>
 		<c:if test="${logonUser.id eq post.id}">
 			<div class="post_del">
 				<!-- 팝업창 관련 -->

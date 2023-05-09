@@ -9,7 +9,7 @@ import data.User;
 
 public class UsersDAO extends DAO {
 	
-	// DB에 회원가입을 처리하는 메서드
+	// DB에 회원가입을 처리하는 메서드		==> insert
 	public static int createUser(String id, String pass, String name) {
 			SqlSession session = factory.openSession(true);
 			Map<String, Object> map = new HashMap<>();
@@ -17,13 +17,17 @@ public class UsersDAO extends DAO {
 			map.put("pass", pass);
 			map.put("name", name);
 		try {
-			return session.insert("users.create", map);
-		} finally {
+			int result = session.insert("users.create", map);;
 			session.close();
+			
+			return result;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return -1;
 		}
 	}
 	
-	// DB에서 유저정보를 가져오는 테스트(로그인시 필요함)
+	// DB에서 유저정보를 가져오는 테스트(로그인시 필요함)		==> select
 	public static User findById(String id) {
 		SqlSession session = factory.openSession();
 		try {

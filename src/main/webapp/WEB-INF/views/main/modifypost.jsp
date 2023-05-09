@@ -44,6 +44,9 @@
 			<input type="text" name="title" value="${post.title}" placeholder="제목을 입력해주세요.">
 			<h2>내용</h2>
 			<textarea name="contents" rows="8" cols="80" placeholder="내용을 입력해주세요.">${post.contents }</textarea>
+			<c:if test="${param.error eq 1}">
+				<p class="error_text">제목과 내용을 입력해주세요.</p>
+			</c:if>
 			<div class="commu_btn">
 				<a href="/post/detail?postId=${post.postId}"><button type="button" name="button">취소</button></a>
 				<button type="submit" name="button">수정</button>

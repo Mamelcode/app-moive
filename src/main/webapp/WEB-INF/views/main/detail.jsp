@@ -53,6 +53,9 @@
 							<i class="fa-regular fa-paper-plane"></i> 작성
 						</button>
 					</form>
+					<c:if test="${param.error eq 1}">
+						<p class="error_text">한 줄 평을 입력해 주세요.</p>
+					</c:if>
 					<c:forEach items="${comments}" var="com">
 					<div>
 						<ul class="detail_comment">

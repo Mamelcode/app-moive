@@ -5,6 +5,11 @@ html {
   background: #000;
 }
 
+.error_text {
+	color: red !important;
+	text-align: center;
+}
+
 .swiper-button-lock{
 	display: block;
 }
