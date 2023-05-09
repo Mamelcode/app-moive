@@ -3,6 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="like">
+
+
 	<!--영화 좋아요 생성 -->
 	<insert id="movieLikeCreate" parameterType="hashmap">
 		INSERT INTO LIKEMOVIES(MOVIE_ID, ID, POSTER_URL, MOVIE_NAME) 
@@ -16,6 +18,7 @@
 	<delete id="movieLikeDelete" parameterType="hashmap">
 		DELETE FROM LIKEMOVIES WHERE ID = #{id} AND MOVIE_ID = #{movieId}
 	</delete>
+	
 	
 	<!-- 배우 좋아요 생성 -->
 	<insert id="actorLikeCreate" parameterType="hashmap">
@@ -70,4 +73,7 @@
 		ORDER BY DBMS_RANDOM.VALUE
 		) WHERE ROWNUM &lt; 2
 	</select>
+	
+	
+	
 </mapper>

@@ -85,13 +85,14 @@
 					list.innerHTML = "";
 					let cnt = 0;
 					for(let o of json) {
+						console.log(o.poster_path);
 						list.innerHTML += "<ul class=\"search_result\">"+
 						"<li class=\"result_img\">"+
-						"<img src=\"https://image.tmdb.org/t/p/w300/"+ o.poster_path +"\">"+
-						"</li>"+
+						"<img src=\"https://image.tmdb.org/t/p/w300/"+ o.poster_path +"\" onerror=\"this.src='/resource/img/no_img.png';\">"+
+						 "</li>"+
 						"<li><a href=\"/main/detail?movieId="+ o.id +" \" class=\"search_tit\">"+ o.title +"("+ o.release_date.substr(0, 4) +")</a>"+
 						"<a class=\"search_stit\">"+ o.overview.substr(0, 30) +"...</a>"+
-						"</li>"
+						"</li>"+
 						"</ul>";
 						
 						cnt++;
@@ -102,6 +103,15 @@
 				}
 			}
 		};
+	</script>
+	<script type="text/javascript">
+	if($thumb['src']) {
+         $img_content = '<img src="'.$thumb['src'].'" alt="'.$thumb['alt'].'" >';
+     } else {
+         $img_content = '<span class="no_image"><img src="'.G5_THEME_IMG_URL.'/noimg.png"></span>';
+     }
+	
+	onerror="this.src='https://s.pstatic.net/static/www/img/uit/2019/sp_search.svg';"
 	</script>
 	<!-- 서치 AJAX -->
 

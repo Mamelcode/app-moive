@@ -68,7 +68,14 @@
 				<div class="detail_top" onclick="location.href='/main/detail?movieId=${list.id}'">
 					<!-- 포스터 부분 -->
 					<div class="detail_poster">
-						<img src="https://image.tmdb.org/t/p/w400/${list.poster_path}">
+						<c:choose>
+							<c:when test="${list.poster_path eq null}">
+								<p class="no_img">no image</p>
+							</c:when>
+							<c:otherwise>
+								<img src="https://image.tmdb.org/t/p/w400/${list.poster_path}">
+							</c:otherwise>
+						</c:choose>
 					</div>
 					<!-- 포스터 부분 -->
 					<!-- 영화정보 -->
