@@ -37,7 +37,7 @@
 	<!-- 탑 메뉴  끝 -->
 
 	<div class="commu_wrap">
-		<h2>커뮤니티 글 작성하기</h2>
+		<h2>커뮤니티 글 수정하기</h2>
 		<form class="commu_write" action="/post/modify-task" method="post">
 			<input type="hidden" name="postId" value="${post.postId}">
 			<h2>제목</h2>

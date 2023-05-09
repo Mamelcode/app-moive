@@ -169,11 +169,11 @@
 					for(let o of json) {
 						list.innerHTML += "<ul class=\"search_result\">"+
 						"<li class=\"result_img\">"+
-						"<img src=\"https://image.tmdb.org/t/p/w300/"+ o.poster_path +"\">"+
+						"<img src=\"https://image.tmdb.org/t/p/w300/"+ o.poster_path +"\" onerror=\"this.src='/resource/img/no_img.png';\">"+
 						"</li>"+
 						"<li><a href=\"/main/detail?movieId="+ o.id +" \" class=\"search_tit\">"+ o.title +"("+ o.release_date.substr(0, 4) +")</a>"+
 						"<a class=\"search_stit\">"+ o.overview.substr(0, 30) +"...</a>"+
-						"</li>"
+						"</li>"+
 						"</ul>";
 						
 						cnt++;
