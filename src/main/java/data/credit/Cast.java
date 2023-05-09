@@ -4,19 +4,22 @@ package data.credit;
 // 출연진(감독, 배우)
 public class Cast {
 
-	Cast[] casts;
-
-	public Cast[] getCasts() {
-		return casts;
+	Casts[] cast;		// 캐스팅 객체들을 담는 배열
+	Casts[] crew;
+	
+	public Casts[] getCrew() {
+		return crew;
 	}
 
-	public void setCasts(Cast[] casts) {
-		this.casts = casts;
+	public void setCrew(Casts[] crew) {
+		this.crew = crew;
 	}
-
-	Casts[] cast;
 
 	public Casts[] getCast() {
 		return cast;
-	}	 
+	}
+
+	public void setCast(Casts[] cast) {
+		this.cast = cast;
+	}
 }

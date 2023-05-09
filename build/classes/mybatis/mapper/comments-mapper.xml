@@ -6,20 +6,21 @@
 
 	<!-- 코멘트 등록 -->
 	<insert id="create" parameterType="hashmap">   
-		INSERT INTO COMMENTS(ID, CONTENTS, COMMENT_ID) 
-		VALUSE (#{id}, #{comments}, #{commentId})
+		INSERT INTO COMMENTS(MOVIE_ID, ID, COMMENTS, COMMENT_ID, NAME) 
+		VALUES (#{movieId}, #{id}, #{comments}, #{commentId}, #{name})
 	</insert>
 
-	<!-- 코멘트 보기 -->
-	<select id="commentsView">
-		SELECT COMMENTS.* FROM COMMENTS WHERE MOVIE_ID=#{movieId}
+	<!-- 코멘트 N개 보기 + 페이징처리-->
+	<select id="findByCommentsAtoB" parameterType="hashmap" resultType="data.Comment">
+		SELECT * FROM
+		(SELECT ROWNUM RN, t.* FROM
+			(SELECT * FROM COMMENTS WHERE MOVIE_ID = #{movieId}) t
+		) WHERE RN BETWEEN #{a} AND #{b}
 	</select>
 	
 	<!-- 코멘트 삭제 -->
-	<delete id="delecte">
+	<delete id="delete" parameterType="String">
 		DELETE FROM COMMENTS WHERE COMMENT_ID = #{commentId}
 	</delete>
-	
-
 	
 </mapper>

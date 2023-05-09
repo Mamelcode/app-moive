@@ -8,7 +8,14 @@ public class Casts {
 	String profile_path;   		 // 프로필 url 
 	String known_for_department;   // 직업
 	String order;				// 0부터~
+	boolean like;
 	
+	public boolean isLike() {
+		return like;
+	}
+	public void setLike(boolean like) {
+		this.like = like;
+	}
 	public String getId() {
 		return id;
 	}

@@ -11,7 +11,7 @@
 	</insert>
 	
 	<!-- 로그인 -->
-	<select id="findById" resultType="data.User">
+	<select id="findById" resultType="data.User" parameterType="String">
 		SELECT USERS.*
 		FROM USERS WHERE ID = #{id} 
 	</select>

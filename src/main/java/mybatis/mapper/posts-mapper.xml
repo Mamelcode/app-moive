@@ -8,22 +8,40 @@
 	<!-- 게시글 등록 -->
 	<insert id="create" parameterType="hashmap">   
 		INSERT INTO POSTS(POST_ID, ID, TITLE, CONTENTS, NAME) 
-		VALUSE (#{postId}, #{id}, #{title}, #{content}, #{name})
+		VALUES (#{postId}, #{id}, #{title}, #{contents}, #{name})
 	</insert>
+	
+	<!-- 게시글 N개 보기 게시글 목록 + 페이징 처리 -->
+	<select id="findByPostAtoB" resultType="data.Post" parameterType="hashmap">
+		SELECT * FROM
+		(SELECT ROWNUM RN, t.* FROM
+			(SELECT * FROM POSTS ORDER BY DATES DESC) t
+		) WHERE RN BETWEEN #{a} AND #{b}
+	</select>
 
-	<!-- 게시글 보기 -->
-	<select id="postView">
+	<!-- 게시글 디테일 보기 -->
+	<select id="findByPost" parameterType="String" resultType="data.Post">
 		SELECT POSTS.* FROM POSTS WHERE POST_ID=#{postId}
 	</select>
 	
 	<!-- 게시글 수정 -->
-	<update id="update" >
-		UPDATE POSTS SET TITLE = #{title}, CONTENTS = #{content} WHERE POST_ID = #{postId}
+	<update id="postUpdate"  parameterType="hashmap">
+		UPDATE POSTS SET TITLE = #{title}, CONTENTS = #{contents} WHERE POST_ID = #{postId}
 	</update>
 	
 	<!-- 게시글 삭제 -->
-	<delete id="delecte">
+	<delete id="postDelecte" parameterType="String">
 		DELETE FROM POSTS WHERE POST_ID = #{postId}
 	</delete>
+	
+	<!-- 게시글 전체 갯수 가져오기 -->
+	<select id="countPost" resultType="int">
+		SELECT COUNT(*) FROM POSTS
+	</select>
+	
+	<!-- 조회수 올리기 -->
+	<update id="updateViews" parameterType="String">
+		UPDATE POSTS SET VIEWS = VIEWS + 1 WHERE POST_ID = #{postId}
+	</update>
 	
 </mapper>

@@ -4,8 +4,16 @@ public class LikeMovie {
 	
 	String movieId;
 	String id;
-	String posterUrl;
+	String posterURL;
+	String movieName;
 	
+	
+	public String getMovieName() {
+		return movieName;
+	}
+	public void setMovieName(String movieName) {
+		this.movieName = movieName;
+	}
 	public String getMovieId() {
 		return movieId;
 	}
@@ -18,11 +26,10 @@ public class LikeMovie {
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getPosterUrl() {
-		return posterUrl;
+	public String getPosterURL() {
+		return posterURL;
 	}
-	public void setPosterUrl(String posterUrl) {
-		this.posterUrl = posterUrl;
+	public void setPosterURL(String posterURL) {
+		this.posterURL = posterURL;
 	}
-	
 }

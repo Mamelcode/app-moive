@@ -9,8 +9,16 @@ public class MovieDetail {
 	String poster_path; // 포스터
 	String tagline; // 문구 (슬로건)
 	String title; // 제목
-	MovieGenres[] genres; // 영화 장르
+	MovieGenre[] genres; // 영화 장르
+	String key;
 	
+	
+	public String getKey() {
+		return key;
+	}
+	public void setKey(String key) {
+		this.key = key;
+	}
 	public String getId() {
 		return id;
 	}
@@ -41,12 +49,14 @@ public class MovieDetail {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	public MovieGenres[] getGenres() {
+	public MovieGenre[] getGenres() {
 		return genres;
 	}
-	public void setGenres(MovieGenres[] genres) {
+	public void setGenres(MovieGenre[] genres) {
 		this.genres = genres;
 	}
+	
+	
 
 
 }
