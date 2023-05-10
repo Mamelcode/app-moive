@@ -70,6 +70,48 @@
 					</c:forEach>
 				</div>
 				<!-- 한줄평 부분 -->
+			
+				<!-- 페이징 처리 부분 -->
+				<c:set var="currentPage" value="${empty param.page ? 1: param.page }"/>
+     			<div class="page_nav">
+
+					<%-- prve 처리 --%>
+					<c:choose>
+						<c:when test="${existPrev }">
+							<a href="/main/detail?movieId=${param.movieId}&page=${start - 1}" class="prev"><i class="fa-solid fa-angle-left"></i></a>
+						</c:when>
+						<c:otherwise>
+							<a class="prev"><i class="fa-solid fa-angle-left"></i></a>
+						</c:otherwise>
+					</c:choose>
+					<%-- prve 처리 --%>
+		
+					<%-- 페이지 넘버 처리 --%>
+					<c:forEach begin="${start}" end="${last}" var="idx">
+						<c:choose>
+							<c:when test="${idx eq currentPage}">
+								<a class="active">${idx}</a>
+							</c:when>
+							<c:otherwise>
+								<a href="/main/detail?movieId=${param.movieId}&page=${idx}">${idx}</a>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
+					<%-- 페이지 넘버 처리 --%>
+					
+					<%-- next 처리 --%>
+					<c:choose>
+						<c:when test="${existNext }">
+							<a href="/main/detail?movieId=${param.movieId}&page=${last + 1}" class="next"><i class="fa-solid fa-angle-right"></i></a>
+						</c:when>
+						<c:otherwise>
+							<a class="next"><i class="fa-solid fa-angle-right"></i></a>
+						</c:otherwise>
+					</c:choose>
+					<%-- next 처리 --%> 
+					
+      			</div>
+      			<!-- 페이징 처리 부분 -->
 			</div>
 
 			<!-- 영화정보 -->

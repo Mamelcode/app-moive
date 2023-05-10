@@ -23,4 +23,9 @@
 		DELETE FROM COMMENTS WHERE COMMENT_ID = #{commentId}
 	</delete>
 	
+	<!-- 특정영화 코멘트 전체 갯수 가져오기 -->
+	<select id="findByCommentsAll" resultType="int" parameterType="String">
+		SELECT COUNT(*) FROM COMMENTS WHERE MOVIE_ID = #{movieId}
+	</select>
+	
 </mapper>

@@ -61,8 +61,23 @@ public class CommentsDAO extends DAO {
 		}
 	}
 	
+	// DB에서 코멘트 카운트하는 메서드		==> select
+	public static int commentCount(String movieId) {
+		SqlSession session = factory.openSession();
+		try {
+			return session.selectOne("comment.findByCommentsAll", movieId);
+		} finally {
+			session.close();
+		}
+	}
+	
 	
 	public static void main(String[] args) {
+		
+		/* 코멘트 카운트 테스트
+		int result = findByCommentAll("155");		
+		System.out.println("COUNT ==> "+ result);
+		*/
 		
 		/* 코멘트 삭제 테스트
 		int result = deleteComment("e00d37e6");

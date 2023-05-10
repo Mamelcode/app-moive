@@ -24,6 +24,7 @@ import data.credit.Casts;
 import data.detail.MovieDetail;
 import repository.CommentsDAO;
 import repository.LikesDAO;
+import repository.PostsDAO;
 import util.MovieAPI;
 
 /*
@@ -66,8 +67,7 @@ public class MovieDetailController extends HttpServlet{
 		// 해당 영화 크레딧 받아오기
 		Cast cast = MovieAPI.getCreditList(movieId);
 		
-		// 한줄평 받아오기
-		List<Comment> comList = CommentsDAO.findByCommentsAtoB(movieId, 1, 10);
+
 		
 		// 좋아요 여부 체크하기
 		List<LikeMovie> likeList = LikesDAO.findByLikeMoives(user.getId());
@@ -134,8 +134,50 @@ public class MovieDetailController extends HttpServlet{
 		req.setAttribute("detail", detail);
 		req.setAttribute("actors", actors);
 		req.setAttribute("directors", directors);
-		req.setAttribute("comments", comList);
 		req.setAttribute("movielike", check);
+		
+		// 페이징 처리 시작
+		String page = req.getParameter("page");
+		
+		// page 파라미터값이 null 이면 1로 고정 그게아니면 파람값으로
+		int p;
+		if(req.getParameter("page") == null) {
+			p = 1;
+		}else {
+			p = Integer.parseInt(req.getParameter("page"));
+		}
+		
+		// 파라미터 a, b값을 설계
+		int a = (p-1)*10+1;
+		int b = 10*p;
+		
+		// 한줄평 받아오기
+		List<Comment> comList = CommentsDAO.findByCommentsAtoB(movieId, a, b);
+		// 한줄평 셋팅하기
+		req.setAttribute("comments", comList);
+		
+		int total = CommentsDAO.commentCount(movieId);
+		int totalPage = total/10 + (total % 10 > 0 ? 1 : 0);
+		int viewPage = 5;
+		
+		int endPage = (((p-1)/viewPage)+1) * viewPage;
+		if(totalPage < endPage) {
+		    endPage = totalPage;
+		}
+		
+		int startPage = ((p-1)/viewPage) * viewPage + 1;
+		
+		req.setAttribute("start", startPage);
+		req.setAttribute("last", endPage);
+		boolean existPrev = p >= 6;
+		boolean existNext = true;
+		if(endPage >= totalPage)
+		{
+			existNext = false;
+		}
+		
+		req.setAttribute("existPrev", existPrev);
+		req.setAttribute("existNext", existNext);
 		
 		req.getRequestDispatcher("/WEB-INF/views/main/detail.jsp").forward(req, resp);
 	}
