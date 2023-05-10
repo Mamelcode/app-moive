@@ -51,9 +51,9 @@
 				
 		<tbody>
 				<c:forEach items="${list}" var="post" varStatus="num" >
-				<tr>
+				<tr onclick="location.href='/post/detail?postId=${post.postId}'">
 					<td>${param.page eq 1 ? num.count : (idx - 10) + num.count}</td>
-					<td><a href="/post/detail?postId=${post.postId}">${post.title}</a></td>
+					<td><a>${post.title}</a></td>
 					<td>${post.name}</td>
 					<td>${post.dates}</td>
 					<td>${post.views}</td>
