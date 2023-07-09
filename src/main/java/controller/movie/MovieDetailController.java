@@ -148,8 +148,11 @@ public class MovieDetailController extends HttpServlet{
 		}
 		
 		// 파라미터 a, b값을 설계
-		int a = (p-1)*10+1;
-		int b = 10*p;
+		int a = (p-1)*10;
+		int b = 10;
+		
+//		int a = (p-1)*10+1;
+//		int b = 10*p;
 		
 		// 한줄평 받아오기
 		List<Comment> comList = CommentsDAO.findByCommentsAtoB(movieId, a, b);

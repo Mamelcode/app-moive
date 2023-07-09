@@ -37,8 +37,9 @@ public class PostListController extends HttpServlet{
 		}
 		
 		// 파라미터 a, b값을 설계
-		int a = (p-1)*10+1;
-		int b = 10*p;
+		int a = (p-1)*10;
+//		int b = 10*p;
+		int b = 10;
 		
 		// 글 목록 가져오기
 		List<Post> list = PostsDAO.findByPostAtoB(a, b);

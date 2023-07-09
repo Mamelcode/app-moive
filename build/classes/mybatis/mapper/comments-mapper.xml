@@ -6,16 +6,16 @@
 
 	<!-- 코멘트 등록 -->
 	<insert id="create" parameterType="hashmap">   
-		INSERT INTO COMMENTS(MOVIE_ID, ID, COMMENTS, COMMENT_ID, NAME) 
-		VALUES (#{movieId}, #{id}, #{comments}, #{commentId}, #{name})
+		INSERT INTO COMMENTS(MOVIE_ID, ID, COMMENTS, COMMENT_ID, NAME, DATES) 
+		VALUES (#{movieId}, #{id}, #{comments}, #{commentId}, #{name}, NOW())
 	</insert>
 
 	<!-- 코멘트 N개 보기 + 페이징처리-->
 	<select id="findByCommentsAtoB" parameterType="hashmap" resultType="data.Comment">
-		SELECT * FROM
-		(SELECT ROWNUM RN, t.* FROM
-			(SELECT * FROM COMMENTS WHERE MOVIE_ID = #{movieId}) t
-		) WHERE RN BETWEEN #{a} AND #{b}
+		SELECT * 
+		FROM COMMENTS
+		ORDER BY DATES ASC
+		LIMIT #{a}, #{b}
 	</select>
 	
 	<!-- 코멘트 삭제 -->

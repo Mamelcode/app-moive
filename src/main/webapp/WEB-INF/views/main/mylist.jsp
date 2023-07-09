@@ -46,7 +46,7 @@
 				</c:if>
 				<c:forEach items="${movieList}" var="list">
 					<div class="list_box">
-						<a href="/detail/unlike?movieId=${list.movieId}&position=mylist" class="detail_like"><i class="fa-solid fa-heart"></i></a>
+						<a href="/detail/unlike?movieId=${list.movieId}&position=mylist" class="detail_like">♥</a>
 						<a href="/main/detail?movieId=${list.movieId}" class="list_img"><img src="https://image.tmdb.org/t/p/w300/${list.posterURL}"></a>
 					</div>
 				</c:forEach>
@@ -65,7 +65,7 @@
 				</c:if>
 				<c:forEach items="${actorList}" var="list">
 					<div class="list_box">
-						<a href="/detail/actor-unlike?actorId=${list.actorId}&position=mylist" class="detail_like"><i class="fa-solid fa-heart"></i></a>
+						<a href="/detail/actor-unlike?actorId=${list.actorId}&position=mylist" class="detail_like">♥</a>
 						<c:choose>
 							<c:when test="${list.posterURL eq null}">
 								<p class="no_img">이미지 정보가 없습니다.</p>
@@ -91,7 +91,7 @@
 				</c:if>
 				<c:forEach items="${directorList}" var="list">
 					<div class="list_box">
-						<a href="/detail/director-unlike?directorId=${list.directorId}&position=mylist" class="detail_like"><i class="fa-solid fa-heart"></i></a>
+						<a href="/detail/director-unlike?directorId=${list.directorId}&position=mylist" class="detail_like">♥</a>
 						<c:choose>
 							<c:when test="${list.posterURL eq null}">
 								<p class="no_img">이미지 정보가 없습니다.</p>

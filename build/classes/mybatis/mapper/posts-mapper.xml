@@ -7,17 +7,23 @@
 
 	<!-- 게시글 등록 -->
 	<insert id="create" parameterType="hashmap">   
-		INSERT INTO POSTS(POST_ID, ID, TITLE, CONTENTS, NAME) 
-		VALUES (#{postId}, #{id}, #{title}, #{contents}, #{name})
+		INSERT INTO POSTS(POST_ID, ID, TITLE, CONTENTS, NAME, DATES) 
+		VALUES (#{postId}, #{id}, #{title}, #{contents}, #{name}, NOW())
 	</insert>
 	
 	<!-- 게시글 N개 보기 게시글 목록 + 페이징 처리 -->
+	<select id="findByPostAtoB" resultType="data.Post" parameterType="hashmap">
+		SELECT * FROM POSTS ORDER BY DATES ASC LIMIT #{a}, #{b}
+	</select>
+	
+	<!--  
 	<select id="findByPostAtoB" resultType="data.Post" parameterType="hashmap">
 		SELECT * FROM
 		(SELECT ROWNUM RN, t.* FROM
 			(SELECT * FROM POSTS ORDER BY DATES DESC) t
 		) WHERE RN BETWEEN #{a} AND #{b}
 	</select>
+	-->
 
 	<!-- 게시글 디테일 보기 -->
 	<select id="findByPost" parameterType="String" resultType="data.Post">

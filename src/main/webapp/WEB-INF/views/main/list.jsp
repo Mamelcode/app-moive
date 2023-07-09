@@ -129,9 +129,9 @@
 				</div>
 			</div>
 			<div class="swiper-btn">
-				<div class="swiper-prev"><i class="fa-solid fa-chevron-left"></i>
+				<div class="swiper-prev"><i class="fa-solid fa-chevron-left">◀</i>
 				</div>
-				<div class="swiper-next"><i class="fa-solid fa-chevron-right"></i>
+				<div class="swiper-next"><i class="fa-solid fa-chevron-right">▶</i>
 				</div>
 			</div>
 		</div>
@@ -152,9 +152,9 @@
 				</div>
 			</div>
 			<div class="swiper-btn2">
-				<div class="swiper-prev2"><i class="fa-solid fa-chevron-left"></i>
+				<div class="swiper-prev2"><i class="fa-solid fa-chevron-left">◀</i>
 				</div>
-				<div class="swiper-next2"><i class="fa-solid fa-chevron-right"></i>
+				<div class="swiper-next2"><i class="fa-solid fa-chevron-right">▶</i>
 				</div>
 			</div>
 		</div>
@@ -175,9 +175,9 @@
 				</div>
 			</div>
 			<div class="swiper-btn2">
-				<div class="swiper-prev3"><i class="fa-solid fa-chevron-left"></i>
+				<div class="swiper-prev3"><i class="fa-solid fa-chevron-left">◀</i>
 				</div>
-				<div class="swiper-next3"><i class="fa-solid fa-chevron-right"></i>
+				<div class="swiper-next3"><i class="fa-solid fa-chevron-right">▶</i>
 				</div>
 			</div>
 		</div>
@@ -199,9 +199,9 @@
 					</div>
 				</div>
 				<div class="swiper-btn2">
-					<div class="swiper-prev4"><i class="fa-solid fa-chevron-left"></i>
+					<div class="swiper-prev4"><i class="fa-solid fa-chevron-left">◀</i>
 					</div>
-					<div class="swiper-next4"><i class="fa-solid fa-chevron-right"></i>
+					<div class="swiper-next4"><i class="fa-solid fa-chevron-right">▶</i>
 					</div>
 				</div>
 			</div>
@@ -224,9 +224,9 @@
 					</div>
 				</div>
 				<div class="swiper-btn2">
-					<div class="swiper-prev5"><i class="fa-solid fa-chevron-left"></i>
+					<div class="swiper-prev5"><i class="fa-solid fa-chevron-left">◀</i>
 					</div>
-					<div class="swiper-next5"><i class="fa-solid fa-chevron-right"></i>
+					<div class="swiper-next5"><i class="fa-solid fa-chevron-right">▶</i>
 					</div>
 				</div>
 			</div>
@@ -249,9 +249,9 @@
 					</div>
 				</div>
 				<div class="swiper-btn2">
-					<div class="swiper-prev6"><i class="fa-solid fa-chevron-left"></i>
+					<div class="swiper-prev6"><i class="fa-solid fa-chevron-left">◀</i>
 					</div>
-					<div class="swiper-next6"><i class="fa-solid fa-chevron-right"></i>
+					<div class="swiper-next6"><i class="fa-solid fa-chevron-right">▶</i>
 					</div>
 				</div>
 			</div>

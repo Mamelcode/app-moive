@@ -78,10 +78,10 @@
 					<%-- prve 처리 --%>
 					<c:choose>
 						<c:when test="${existPrev }">
-							<a href="/main/detail?movieId=${param.movieId}&page=${start - 1}" class="prev"><i class="fa-solid fa-angle-left"></i></a>
+							<a href="/main/detail?movieId=${param.movieId}&page=${start - 1}" class="prev"> ◀ </a>
 						</c:when>
 						<c:otherwise>
-							<a class="prev"><i class="fa-solid fa-angle-left"></i></a>
+							<a class="prev"> ◀ </a>
 						</c:otherwise>
 					</c:choose>
 					<%-- prve 처리 --%>
@@ -102,10 +102,10 @@
 					<%-- next 처리 --%>
 					<c:choose>
 						<c:when test="${existNext }">
-							<a href="/main/detail?movieId=${param.movieId}&page=${last + 1}" class="next"><i class="fa-solid fa-angle-right"></i></a>
+							<a href="/main/detail?movieId=${param.movieId}&page=${last + 1}" class="next"> ▶ </a>
 						</c:when>
 						<c:otherwise>
-							<a class="next"><i class="fa-solid fa-angle-right"></i></a>
+							<a class="next"> ▶ </a>
 						</c:otherwise>
 					</c:choose>
 					<%-- next 처리 --%> 
@@ -120,11 +120,11 @@
 					<c:choose>
 						<c:when test="${movielike}">
 							<a href="/detail/unlike?movieId=${param.movieId}&position=detail" class="active">
-							<i class="fa-regular fa-check"></i></a>
+							♥</a>
 						</c:when> 
 						<c:otherwise>
 							<a href="/detail/movielike?movieId=${param.movieId}&posterURL=${detail.poster_path}&movieName=${detail.title}" >
-							<i class="fa-solid fa-plus"></i></a>
+							+ </a>
 						</c:otherwise>
 					</c:choose>
 				</h2>
@@ -141,12 +141,12 @@
 						<c:choose>
 							<c:when test="${d.like}">
 								<a href="/detail/director-unlike?movieId=${param.movieId}&directorId=${d.id}&position=detail" class="detail_like">
-								<i class="fa-solid fa-heart"></i></a>
+								♥</a>
 							</c:when>
 						
 							<c:otherwise>
 								<a href="/detail/director-like?movieId=${param.movieId}&directorId=${d.id}&posterURL=${d.profile_path}&directorName=${d.name}" class="detail_like">
-								<i class="fa-regular fa-heart"></i></a>
+								♡</a>
 							</c:otherwise>
 						</c:choose>
 						
@@ -178,11 +178,11 @@
 								<c:choose>
 									<c:when test="${a.like}">
 										<a href="/detail/actor-unlike?movieId=${param.movieId}&actorId=${a.id}&position=detail" class="detail_like">
-										<i class="fa-solid fa-heart"></i></a>
+										♥</a>
 									</c:when> 
 									<c:otherwise>
 										<a href="/detail/actor-like?movieId=${param.movieId}&actorId=${a.id}&posterURL=${a.profile_path}&actorName=${a.name}" class="detail_like">
-										<i class="fa-regular fa-heart"></i></a>
+										♡</a>
 									</c:otherwise>
 								</c:choose>
 								

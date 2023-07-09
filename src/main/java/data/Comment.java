@@ -1,5 +1,7 @@
 package data;
 
+import java.util.Date;
+
 public class Comment {
 
 	String movieId;
@@ -7,6 +9,7 @@ public class Comment {
 	String comments;
 	String commentId;
 	String name;
+	Date dates;
 	
 	
 	public String getName() {
@@ -39,7 +42,10 @@ public class Comment {
 	public void setCommentId(String commentId) {
 		this.commentId = commentId;
 	}
-	
-	
-	
+	public Date getDates() {
+		return dates;
+	}
+	public void setDates(Date dates) {
+		this.dates = dates;
+	}
 }

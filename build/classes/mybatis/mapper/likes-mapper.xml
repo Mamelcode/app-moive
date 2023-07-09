@@ -51,13 +51,29 @@
 	
 	<!--유저의 좋아요 목록중 랜덤으로 하나 가져오기(영화)  -->
 	<select id="movieFindRandom" resultType="data.LikeMovie" parameterType="string">
+		SELECT * FROM LIKEMOVIES 
+		WHERE ID = #{id} 
+		ORDER BY RAND() LIMIT 1
+	</select>
+	
+	<!--  오라클버전
+	<select id="movieFindRandom" resultType="data.LikeMovie" parameterType="string">
 		SELECT * FROM (
 		SELECT * FROM LIKEMOVIES 
 		WHERE ID = #{id} 
 		ORDER BY DBMS_RANDOM.VALUE
 		) WHERE ROWNUM &lt; 2
 	</select>
+	-->
+	
 	<!--유저의 좋아요 목록중 랜덤으로 하나 가져오기(감독)  -->
+	<select id="directorFindRandom" resultType="data.LikeDirector" parameterType="string">
+		SELECT * FROM  LIKEDIRECTORS 
+		WHERE ID = #{id} 
+		ORDER BY RAND() LIMIT 1
+	</select>
+	
+	<!-- 오라클버전
 	<select id="directorFindRandom" resultType="data.LikeDirector" parameterType="string">
 		SELECT * FROM (
 		SELECT * FROM LIKEDIRECTORS 
@@ -65,7 +81,16 @@
 		ORDER BY DBMS_RANDOM.VALUE
 		) WHERE ROWNUM &lt; 2
 	</select>
+	-->
+	
 	<!--유저의 좋아요 목록중 랜덤으로 하나 가져오기(배우)  -->
+	<select id="actorFindRandom" resultType="data.LikeActor" parameterType="string">
+		SELECT * FROM  LIKEACTORS 
+		WHERE ID = #{id} 
+		ORDER BY RAND() LIMIT 1
+	</select>
+	
+	<!--  오라클버전
 	<select id="actorFindRandom" resultType="data.LikeActor" parameterType="string">
 		SELECT * FROM (
 		SELECT * FROM LIKEACTORS 
@@ -73,6 +98,7 @@
 		ORDER BY DBMS_RANDOM.VALUE
 		) WHERE ROWNUM &lt; 2
 	</select>
+	-->
 	
 	
 	

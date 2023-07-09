@@ -51,9 +51,9 @@
 				
 		<tbody>
 				<c:forEach items="${list}" var="post" varStatus="num" >
-				<tr onclick="location.href='/post/detail?postId=${post.postId}'">
+				<tr>
 					<td>${param.page eq 1 ? num.count : (idx - 10) + num.count}</td>
-					<td><a>${post.title}</a></td>
+					<td><a href="/post/detail?postId=${post.postId}">${post.title}</a></td>
 					<td>${post.name}</td>
 					<td>${post.dates}</td>
 					<td>${post.views}</td>
@@ -72,10 +72,10 @@
 			<%-- prve 처리 --%>
 			<c:choose>
 				<c:when test="${existPrev }">
-					<a href="/main/postlist?page=${start - 1}" class="prev"><i class="fa-solid fa-angle-left"></i></a>
+					<a href="/main/postlist?page=${start - 1}" class="prev">←</a>
 				</c:when>
 				<c:otherwise>
-					<a class="prev"><i class="fa-solid fa-angle-left"></i></a>
+					<a class="prev">←</a>
 				</c:otherwise>
 			</c:choose>
 			<%-- prve 처리 --%>
@@ -96,10 +96,10 @@
 			<%-- next 처리 --%>
 			<c:choose>
 				<c:when test="${existNext }">
-					<a href="/main/postlist?page=${last + 1}" class="next"><i class="fa-solid fa-angle-right"></i></a>
+					<a href="/main/postlist?page=${last + 1}" class="next">→</a>
 				</c:when>
 				<c:otherwise>
-					<a class="next"><i class="fa-solid fa-angle-right"></i></a>
+					<a class="next">→</a>
 				</c:otherwise>
 			</c:choose>
 			<%-- next 처리 --%> 
